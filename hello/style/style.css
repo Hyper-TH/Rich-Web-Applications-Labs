@@ -38,3 +38,41 @@
     margin: 0em;
 
 }
+
+/* Basic Selectors */
+article { font-weight: bold; }                      /* All article tags */
+.news {font-family: Verdana }                       /* Tags with class="news" */
+#specific {margin-left: 10px; }                     /* Tags with id="specific" */
+article.product {padding: 10px 5px 10px 5px; }      /* Article tags with class="product" */
+p#intro { color: rgb(255, 0, 0)}                  /* P tags with id="intro" NO SPACES BETWEEN TAG AND CLASS/ID QUALIFIER */
+
+
+/* Relational Selectors */
+article p { font-size: 10px; }      /* All p tags descendants of article tags */
+header > h2 { text-align: center; } /* All h2 children tags of header tags */
+input + label {font-style: italic;} /* All label sibling tags directly after input */
+
+
+/* Attribute Selectors */
+img[alt] {width: 80%; }     /* Elements can be direct or relational sectors*/
+input[placeholder] {color: grey;}
+input[type=submit] {font-weight: bold;}
+
+
+/* UI Pseudo-selectors */
+input[type=checkbox]:checked + label {color: red; } /* All label tags immediately following checkboxes which are selected */
+a:hover {text-decoration: none; }                     /* A tags under mouse hover*/
+input:required {font-style: italic;}                  /* Input tags which are marked as required */
+
+
+/* Structural Pseudo-selectors */
+article.news:first-child {margin-right: 5%; }        /* First child of all article tags with class="news" */
+p:first-of-type {font-family: "Times"; }             /* First p tag in any enclosing parent */
+tr:nth-child(even) {background-color: "#CCC"; }      /* All even rows from a table with class="marks" */
+
+
+/* Setting Padding, Border and Margin*/
+article { padding-top: 2%; }            /* ALl article tags have a top relative padding */
+p { border: 1px solid grey; }         /* Border around all p tags have 1px and color grey */
+div.box {margin: 10px 5px 10px 5px; }   /* Margin around all div with class="box" */
+
