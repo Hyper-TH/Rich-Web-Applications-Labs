@@ -12,6 +12,11 @@ getNotes().forEach((note) => {
     notesContainer.insertBefore(noteElement, addNoteButton);   // Insert before the add note button
 });
 
+// Function to generate random number
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+ 
 // Event listener for pressing plus button
 addNoteButton.addEventListener("click", () => addNote());
 
@@ -29,10 +34,14 @@ function saveNotes(notes) {
 function createNoteElement(id, content) {
     // Create var for a new textarea component
     const element = document.createElement("textarea");
+    const randRed = randomNumber(0,250);
+    const randBlue = randomNumber(0,250);
+    const randGreen = randomNumber(0,250);
 
     element.classList.add("note");              // Apply note class to this element
     element.value = content;                    // Apply content passed in
-    element.placeholder = "Empty Sticky Note"    
+    element.placeholder = "Empty Sticky Note"  
+    element.style.backgroundColor = `rgb(${randRed}, ${randBlue}, ${randGreen})`;
 
     // Add event listener
     element.addEventListener("change", () => {
