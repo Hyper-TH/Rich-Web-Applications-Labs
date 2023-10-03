@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    background: #009576;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px); /* Display every note at 200px width (if browser too small, drop to next line */
+    padding: 24px;
+    gap: 24px;
+}
+
+.note {
+    height: 200px; /* Same as height of grid */
+    box-sizing: border-box; /* Padding will not increase the width and height of note*/
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+    resize: none; /* Remove resizable feature */
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.add-note {
+    height: 200px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.1); /* 10% opaque background */
+    border-radius: 10px;
+    font-size: 120px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-note:hover {
+    background: (0, 0, 0, 0.2);
+}
