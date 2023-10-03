@@ -1,6 +1,12 @@
 body {
     margin: 0;
-    background: #009576;
+    background: #000000;
+}
+
+#header {
+    color: rgba(250, 250, 250);
+    text-align: center;
+    text-shadow: 2px 1px 2px rgb(158, 155, 155);
 }
 
 #app {
@@ -16,7 +22,7 @@ body {
     padding: 16px;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 7px rgba(250, 250, 250, 0.15);
     resize: none; /* Remove resizable feature */
     font-family: sans-serif;
     font-size: 16px;
@@ -25,15 +31,15 @@ body {
 .add-note {
     height: 200px;
     border: none;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.1); /* 10% opaque background */
+    outline: none; 
+    background-color: rgba(195, 195, 195, 0.2); /* 10% opaque background */
     border-radius: 10px;
     font-size: 120px;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(250, 250, 250, 0.5);
     cursor: pointer;
     transition: background 0.2s;
 }
 
 .add-note:hover {
-    background: (0, 0, 0, 0.2);
+    background: rgba(240, 240, 240, 0.2);
 }
