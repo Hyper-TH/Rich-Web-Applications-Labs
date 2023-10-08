@@ -14,18 +14,17 @@ let hacksImages = [
 ];
 
 let sponsors = [
-    "Sponsored by NordVPN",
-    "Sponsored by LordsMobile",
-    "Sponsored by Raid Shadow Legends",
-    "Sponsored by Casetify",
-    "Sponsored by Honey",
-    "Sponsored by Shopify",
-    "Sponsored by Temu",
-    "Sponsored by Temu",
-    "Sponsored by Skillshare",
-    "Sponsored by War Thunder",
-    "Sponsored by GFuel",
-    "Sponsored by DBrand",
+    "NordVPN",
+    "LordsMobile",
+    "Raid Shadow Legends",
+    "Casetify",
+    "Honey",
+    "Shopify",
+    "Temu",
+    "Skillshare",
+    "War Thunder",
+    "GFuel",
+    "DBrand",
 ];
 
 // Function to generate random number
@@ -57,7 +56,7 @@ for (let i = 0; i < p.length; i++){
 const li = document.getElementsByTagName("li");
 for (let i = 0; i < li.length; i++) {
     const randSponsor = Math.floor(Math.random() * sponsors.length);
-    li[i].innerHTML = sponsors[randSponsor];
+    li[i].innerHTML = `Sponsored by: ${sponsors[randSponsor]}`;
 }
 
 const a = document.getElementsByTagName("a");
