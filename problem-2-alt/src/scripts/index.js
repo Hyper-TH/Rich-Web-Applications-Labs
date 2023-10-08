@@ -40,7 +40,7 @@ function createNoteElement(id, content) {
 
     element.classList.add("note");              // Apply note class to this element
     element.value = content;                    // Apply content passed in
-    element.placeholder = "Empty Sticky Note"  
+    element.placeholder = "Empty Note"  
     element.style.backgroundColor = `rgb(${randRed}, ${randBlue}, ${randGreen})`;
 
     // Add event listener
@@ -72,6 +72,7 @@ function addNote() {
     const noteElement = createNoteElement(noteObject.id, noteObject.content);
     notesContainer.insertBefore(noteElement, addNoteButton);
 
+    // persist the color
     notes.push(noteObject);
     saveNotes(notes);
 }
