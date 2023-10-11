@@ -16,9 +16,13 @@ All `<h1>` tag texts are now replaced with "You are hacked".
 
 All `<h2>` tag texts are now replaced with a warning of stating a randomly generated number of viruses detected in the system.
 
+### h3
+
+All `<h3>` tag texts are now in `Comic Sans MS` and provides a randomly generated phone number for the supposed victim to contact to "fix" the problem.
+
 ### p
 
-All `<p>` tag texts are now in `Comic Sans MS` and provides a randomly generated phone number for the supposed victim to contact to "fix" the problem.
+All `<p>` tag texts now contain a random cat fact fetched from the `CatFact API`.
 
 ### li
 
