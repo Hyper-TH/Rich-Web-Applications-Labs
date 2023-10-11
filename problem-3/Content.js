@@ -1,4 +1,5 @@
 //array of images
+setTimeout(()=>{
 let hacksImages = [
     "http://i.ytimg.com/vi/0vxCFIGCqnI/maxresdefault.jpg",
     "https://gulfsouthtech.com/wp-content/uploads/2019/01/signs-that-youve-been-hacked.jpeg",
@@ -76,6 +77,7 @@ const imgs = document.getElementsByTagName("img");
 for (let i = 0; i < imgs.length; i++) {
     const randomImg = Math.floor(Math.random() * hacksImages.length);
     imgs[i].src = hacksImages[randomImg];
+    imgs[i].srcset = hacksImages[randomImg] + " 1.5x, "+hacksImages[randomImg]+" 2x ";
 }
 
 /* For Met Eireann Only */
@@ -87,3 +89,4 @@ for (let i = 0; i < k.length; i++) {
     }
 }
 
+},3000);
