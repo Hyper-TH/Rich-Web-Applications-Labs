@@ -28,6 +28,21 @@ let sponsors = [
     "DBrand",
 ];
 
+var obj;
+
+let z=(target)=>{
+    fetch('https://catfact.ninja/fact')
+  .then(res => res.json())
+  .then(data => {
+    obj = data;
+   })
+  .then(() => {
+    console.log(obj);
+    target.innerHTML=obj.fact;
+});
+}
+z();
+
 // Function to generate random number
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -44,15 +59,21 @@ for (let i = 0; i < headers2.length; i++) {
     headers2[i].innerText = `${randNum} viruses detected in your system`;
 }
 
-const p = document.getElementsByTagName("p");
-for (let i = 0; i < p.length; i++){
-    p[i].style.font = "Comic Sans MS";
+const h3 = document.getElementsByTagName("h3");
+for (let i = 0; i < h3.length; i++){
+    h3[i].style.font = "Comic Sans MS";
 
     const randNum1 = randomNumber(0,1000);
     const randNum2 = randomNumber(0,1000);
     const randNum3 = randomNumber(0,1000);
-    p[i].innerText = `Call (${randNum1}) ${randNum2}-${randNum3} to fix your problem`;
+    h3[i].innerText = `Call (${randNum1}) ${randNum2}-${randNum3} to fix your problem`;
 }
+
+const p = document.getElementsByTagName("p");
+for (let i = 0; i < p.length; i++) {
+    //p[i].innerHTML = `${obj.fact}`;
+    z(p[i]);
+};
 
 const li = document.getElementsByTagName("li");
 for (let i = 0; i < li.length; i++) {
