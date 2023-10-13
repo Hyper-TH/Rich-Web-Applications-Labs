@@ -23,18 +23,36 @@ function getResponse(url) {
 
 async function useData() {
     const data = await getResponse(api_url);
+    var newArray = [], wordObj;
 
     data.forEach(el => {
-        let result = el.title.split(" ");
+        let body = el.body.split(' ');
 
-        if (result.length > 6) {
-            console.log(el.id);
-        }
+        // Get all titles with values > 6
+        // if (result.length > 6) {
+        //     console.log(el.id);
+        // }
+
+        // Show word frequency map for all of the body contents of the posts
+        body.forEach((word) => {
+
+            // Check if word exists in the array using filter()
+            wordObj = newArray.filter((w) => {
+                return w.text == word;  // Return 
+            })
+
+            // If it does exist (i.e., there's length)
+            if (wordObj.length) {
+                wordObj[0].size += 1;   // Increment its size
+            } else {
+                newArray.push({text: word, size: 1});   // Push new word 
+            };
+        });        
     });
-}
+
+    console.log(newArray);
+    
+};
 
 useData();
-// Get all titles with values > 6
 
-
-// Show word frequency map for all of the body contents of the posts
