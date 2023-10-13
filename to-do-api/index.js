@@ -26,7 +26,7 @@ async function useData() {
     var newArray = [], wordObj;
 
     data.forEach(el => {
-        let body = el.body.split(' ');
+        let body = el.body.split(/[\\\s]+/);
 
         // Get all titles with values > 6
         // if (result.length > 6) {
