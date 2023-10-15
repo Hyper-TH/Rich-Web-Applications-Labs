@@ -40,6 +40,33 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     }
 });
 
+document.querySelector('#search').addEventListener('submit', (e) => {
+    e.preventDefault(); 
+
+    const inputNum = document.querySelector('#num-2').value;
+    let books = Directory.getBooks();
+
+    books.forEach(book => {
+        if(book.num == inputNum) {
+            // insert element here
+            const list = document.querySelector('#Nlist');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <tr>
+                <th> Name </tj>
+                <th> Phone Number </tj>
+                <th> Email </tj>
+            </tr>
+                <td>${book.name}</td>
+                <td>${book.num}</td>
+                <td>${book.email}</td>
+            `;
+            list.appendChild(row);
+        }
+    });
+
+});
+
 document.querySelector('#Plist').addEventListener('click', (e) => {
     PhoneDirectory.deleteBook(e.target);
 
