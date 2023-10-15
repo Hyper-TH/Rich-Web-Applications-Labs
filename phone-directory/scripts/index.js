@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
 // Validation
-document.querySelector('#phone-form').addEventListener('submit', () => {
+document.querySelector('#phone-form').addEventListener('submit', (e) => {
     // e.preventDefault();
 
     // Grab all user input
@@ -42,3 +42,55 @@ document.querySelector('#Plist').addEventListener('click', (e) => {
     PhoneDirectory.Alert("remove");
 });
 
+// Sort the table (bubble sort)
+function sortTable(n) {
+    var table, rows;
+    var switching;
+    var shouldSwitch;
+    var dir;
+    var switchCount;
+    table = document.getElementById('contacts');
+    switching = true;
+
+    // Initially sort to asc (true)
+    dir = true;
+
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        // Loop through table rows (excluding table headers)
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+
+            // Get two el to compare, curr row to next row
+            let x = rows[i].getElementsByTagName("td")[n];
+            let y = rows[i + 1].getElementsByTagName("td")[n];
+
+            // Check if they should switch
+            if (dir) {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (!dir) {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            
+            switchCount++;
+        } else {
+            if (switchCount == 0 && dir) {
+                dir = false;
+                switching = true;
+            }
+        }
+    }
+};
