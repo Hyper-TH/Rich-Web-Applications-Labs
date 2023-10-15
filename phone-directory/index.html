@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyper's Phone Directory</title>
+        <link rel="stylesheet" href="styles/style.css">
+
+        <!-- Defer ensures that the JS file loads as the webpage loads -->
+        <!-- Only executes onces the DOMs has been loaded inside the script -->
+        <script src="scripts/index.js" defer></script>
+    </head>
+
+    <body>
+        <div class="top-container">
+            <h1 class="title">Hyper's Phone Directory</h1>
+            <div id="error">Please fill in all details</div>
+            <div id="name-error">Name must be less than or equal to 20 characters and only contain alphabets and space</div>
+            <div id="mobile-error">Number should be equal to 10 characters and only contain numbers</div>
+            <div id="email-error">Should be a valid email and less than 40 characters</div>
+        </div>
+
+        <form id="phone-form">
+            <input type="text" id="name" placeholder="Enter name">
+            <input type="text" id="num" placeholder="Enter number">
+            <input type="email" id="email" placeholder="Enter email">
+
+            <input type="submit" id="button" value="ADD">
+        </form>
+
+        <div class="search">
+            <p>Search contact by Mobile No:</p>
+            <input type="text" id="num-2" placeholder="Enter number">
+        </div>
+
+        <table id="contacts">
+            <caption>Contacts Summary</caption>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                </tr>
+                <tbody id="Plist"></tbody>
+            </thead>
+        </table>
+
+    </body>
+</html>
