@@ -14,15 +14,20 @@ class PhoneDirectory {
             <td>${book.num}</td>
             <td>${book.email}</td>
         `;
-        ;
         list.appendChild(row);
     };
 
     static Alert(message) {
-        var x = document.getElementById(message);
-        x.style.display = "block";
-        setTimeout(() => x.style.display = 'none', 3000);
-    };
+        var divs = document.getElementsByClassName("response");
+        console.log(divs);
+        for (let i = 0; i < divs.length; i++) {
+            if(divs[i].id != message) {
+                divs[i].style.display = 'none';
+            } else {
+                divs[i].style.display = 'block';
+            }
+        }
+    };  
 
     static clearFields() {
         document.querySelector('#name').value = '';
