@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
 // Validation
 document.querySelector('#phone-form').addEventListener('submit', (e) => {
-    // e.preventDefault();
+    e.preventDefault(); // This stops re-rendering the error divs for some reason
 
     // Grab all user input
     const name = document.querySelector('#name').value;
@@ -29,6 +29,12 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
         Directory.addBook(book);
 
         alert('Details added sucessfully');
+
+        // Resets all error messages
+        var divs = document.getElementsByClassName("response");
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].style.display = 'none';
+        }
 
         PhoneDirectory.clearFields();
     }
