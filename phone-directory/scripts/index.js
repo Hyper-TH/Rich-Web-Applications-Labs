@@ -61,14 +61,18 @@ document.querySelector('#search').addEventListener('submit', (e) => {
     e.preventDefault(); 
 
     const inputNum = document.querySelector('#num-2').value;
+    const searchList = document.querySelector('#Nlist');
+    const noResult = document.querySelector('#noResult');
+
     let books = Directory.getBooks();
+    let searched = false;
 
     books.forEach(book => {
         if(book.num == inputNum) {
             // insert element here
-            const list = document.querySelector('#Nlist');
-            const row = document.createElement('tr');
-            row.innerHTML = `
+            searchList.style.display = 'block';
+            const rows = document.createElement('tr');
+            rows.innerHTML = `
             <tr>
                 <th> Name </tj>
                 <th> Phone Number </tj>
@@ -78,9 +82,16 @@ document.querySelector('#search').addEventListener('submit', (e) => {
                 <td>${book.num}</td>
                 <td>${book.email}</td>
             `;
-            list.appendChild(row);
+            searchList.appendChild(rows);
+            noResult.style.display = 'none';
+            searched = true;
         }
     });
+    
+    if (!searched) {
+        searchList.style.display = 'none';
+        noResult.style.display = 'block';
+    }
 
 });
 
