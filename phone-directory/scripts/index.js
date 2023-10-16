@@ -1,3 +1,7 @@
+// Regex values
+const nameReg = /^[a-zA-Z\s]+$/;
+const emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 // Once DOM is loaded, display data
 document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
@@ -9,18 +13,31 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     const name = document.querySelector('#name').value;
     const num = document.querySelector('#num').value;
     const email = document.querySelector('#email').value;
-
+    
+    // If any of the fields are empty:
     if (name === '' || num == '' || email == '') {
         PhoneDirectory.Alert("error");
-    } else if (name.length >= 20) {
+    // If name is > 20
+    } else if (name.length > 20 ) {
+        console.log('name-error: > 20');
         PhoneDirectory.Alert("name-error");
         PhoneDirectory.clearFields();
-    } else if (isNaN(num)) {
+    // If name contains !(alpha/space only)
+    } else if (!nameReg.test(name)) {
+        console.log('name-error: !regex');
+        PhoneDirectory.Alert("name-error"); // TODO: Create a different val error for this
+        PhoneDirectory.clearFields(); 
+    // If number passed is not a number || not equal to 10 
+    } else if (isNaN(num) || num.length != 10) {
+        console.log('num-error: !num || != 10');
         PhoneDirectory.Alert("num-error");
         PhoneDirectory.clearFields();
-    } else if (email.length >= 40) {
-        PhoneDirectory.Alert("email-error");
         PhoneDirectory.clearFields();
+    // If email passed is not a valid email || >= 40 in length
+    } else if (email.length >= 40 || !(emailReg.test(email))) {
+        console.log('email-error: !regex || >= 40 ');
+        PhoneDirectory.Alert("email-error");
+        PhoneDirectory.clearFields(); 
     } else {
         // Create instance of the class
         const book = new Phone(name, num, email);
@@ -67,13 +84,13 @@ document.querySelector('#search').addEventListener('submit', (e) => {
 
 });
 
-document.querySelector('#Plist').addEventListener('click', (e) => {
-    PhoneDirectory.deleteBook(e.target);
+// document.querySelector('#Plist').addEventListener('click', (e) => {
+//     PhoneDirectory.deleteBook(e.target);
 
-    Directory.removeBook(e.target.parentElement.previousElementSibling.textContent);
+//     Directory.removeBook(e.target.parentElement.previousElementSibling.textContent);
     
-    PhoneDirectory.Alert("remove");
-});
+//     PhoneDirectory.Alert("remove");
+// });
 
 // Sort the table (bubble sort)
 function sortTable(n) {
