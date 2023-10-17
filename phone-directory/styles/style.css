@@ -1,0 +1,32 @@
+.title {
+    text-align: center;
+}
+
+#phone-form {
+    display: block;
+    border: 3px solid #467987;
+    border-radius: 6px;
+    background-color: #a8d4df;
+    width: 45%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#search {
+    text-align:center;
+    display: block;
+}
+
+#contacts {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    border-collapse: collapse;
+}
+
+#contacts th, td {
+    border: 1px solid;
+}
+
