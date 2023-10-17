@@ -67,6 +67,7 @@ document.querySelector('#search').addEventListener('submit', (e) => {
     let books = Directory.getBooks();
     let searched = false;
 
+    // TODO: Odd numbers should have #f2f2f2 as their background color
     books.forEach(book => {
         if(book.num == inputNum) {
             // insert element here
@@ -95,6 +96,7 @@ document.querySelector('#search').addEventListener('submit', (e) => {
 
 });
 
+// TODO: Delete entries
 // document.querySelector('#Plist').addEventListener('click', (e) => {
 //     PhoneDirectory.deleteBook(e.target);
 
@@ -104,6 +106,7 @@ document.querySelector('#search').addEventListener('submit', (e) => {
 // });
 
 // Sort the table (bubble sort)
+// TODO: Another click would sort it in descending order
 function sortTable(n) {
     var table, rows;
     var switching;
