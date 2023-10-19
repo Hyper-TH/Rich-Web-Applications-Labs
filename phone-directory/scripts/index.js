@@ -67,7 +67,6 @@ document.querySelector('#search').addEventListener('submit', (e) => {
     let books = Directory.getBooks();
     let searched = false;
 
-    // TODO: Odd numbers should have #f2f2f2 as their background color
     books.forEach(book => {
         if(book.num == inputNum) {
             // insert element here

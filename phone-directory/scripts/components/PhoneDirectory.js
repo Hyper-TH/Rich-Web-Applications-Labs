@@ -1,3 +1,7 @@
+//check if the number is odd
+function isOdd (number) {
+    return number % 2 !== 0;
+}
 class PhoneDirectory {
     static displayBooks() {
         const books = Directory.getBooks();
@@ -9,11 +13,19 @@ class PhoneDirectory {
         const list = document.querySelector('#Plist');
         const row = document.createElement('tr');
 
-        row.innerHTML = `
-            <td>${book.name}</td>
-            <td>${book.num}</td>
-            <td>${book.email}</td>
-        `;
+        if (isOdd(book.num)) {
+            row.innerHTML = `
+                <td style="background-color: #f2f2f2">${book.name}</td>
+                <td style="background-color: #f2f2f2">${book.num}</td>
+                <td style="background-color: #f2f2f2">${book.email}</td>
+            `;
+        } else {
+            row.innerHTML = `
+                <td>${book.name}</td>
+                <td>${book.num}</td>
+                <td>${book.email}</td>
+            `;
+        }
         list.appendChild(row);
     };
 
