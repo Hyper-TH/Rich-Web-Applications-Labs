@@ -1,5 +1,10 @@
 .title {
+    color: #ffffff;
     text-align: center;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
 }
 
 #phone-form {
@@ -19,7 +24,12 @@
     display: block;
 }
 
+#search p {
+    color: white;
+}
+
 #contacts {
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
     width: auto;
