@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GitHub Profile</title>
+        <link rel="stylesheet" href="styles/style.css">
+
+        <!-- Defer ensures that the JS file loads as the webpage loads -->
+        <!-- Only executes onces the DOMs has been loaded inside the script -->
+        <script src="scripts/index.js" defer></script>
+    </head>
+
+    <body>
+        <div id='searchBar'>
+            <input placeholder='Username'>
+            <button onClick="findUser()"> Search </button>
+        </div>
+
+        <div class='userProfile'>
+            <h1> User Profile </h1>
+            <img src="" />
+            <div id='userInfo'>
+            </div>
+        </div>
+
+        <div class='userRepos'>
+            <h1> User Repos </h1>
+            <div id='repos'>
+            </div>
+        </div>
+    </body>
+</html>
