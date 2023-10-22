@@ -1,0 +1,22 @@
+table {
+    text-align: left;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+#repoInfo tbody{
+    border: 1px solid;
+}
+
+#repoInfo th {
+    border-right: 1px solid;
+}
+
+#userInfo td {
+    border: 1px solid;
+}
+
+#userInfo th {
+    border: 1px solid;
+}
+
