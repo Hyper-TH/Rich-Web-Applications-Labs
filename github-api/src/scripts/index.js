@@ -44,7 +44,7 @@ async function findUser() {
             </tr>
             <tr>
                 <th>Username: </th>
-                <td>${data.username}</td>
+                <td>${data.login}</td>
             </tr>
             <tr>
                 
