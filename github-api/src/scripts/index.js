@@ -1,5 +1,11 @@
 const api_url='https://api.github.com/users';
 
+// Attempt clear fields for every search
+function clearFields() {
+    document.querySelector('#userInfo').empty();
+    document.querySelector('#repoInfo').empty();
+};
+
 function getResponse(url) {
     return new Promise((resolve, reject) => {
         fetch(url)
@@ -21,19 +27,21 @@ function getResponse(url) {
     
 };
 
-async function findUser() {
+async function findUser() { 
     let username = document.getElementById('username').value;
     try {
+
         const data = await getResponse(`${api_url}/${username}`);
         console.log(data);
 
         const avatar = document.getElementById('userAvatar');
         avatar.src = data.avatar_url;
 
-        const list = document.querySelector('#userInfo');
-        const row = document.createElement('tbody');
+        const infoList = document.querySelector('#userInfo');
+        const userRow = document.createElement('tbody');
 
-        row.innerHTML = `
+        // Table that contains the user's details
+        userRow.innerHTML = `
             <tr>
                 <th>Name: </th>
                 <td>${data.name}</td>
@@ -56,16 +64,14 @@ async function findUser() {
                 <td>${data.public_gists}</td>
             </tr>
         `;
-        list.appendChild(row);
+        infoList.appendChild(userRow);
 
         const repoData = await getResponse(`${api_url}/${username}/repos`);
-        console.log(repoData);
-
         const repoList = document.querySelector('#repoInfo');
         
+        // Table that contains the repositories and its details
         repoData.forEach(el => {
-            console.log(el);
-            let repoRow = document.createElement('tbody');
+            let repoRow = document.createElement('tbody');  // Every repo is a body
             repoRow.innerHTML = `
                 <tr>
                     <th>Name: </th>
