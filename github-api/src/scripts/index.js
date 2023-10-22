@@ -41,6 +41,23 @@ async function findUser() {
             <td>${data.public_gists}</td>
         `;
         list.appendChild(row);
+
+        const repoData = await getResponse(`${api_url}/${username}/repos`);
+        console.log(repoData);
+
+        const repoList = document.querySelector('#Rlist');
+        
+        repoData.forEach(el => {
+            console.log(el);
+            let repoRow = document.createElement('tr');
+            repoRow.innerHTML = `
+                <td>${el.name}</td>
+                <td>${el.description}</td>
+            `;
+            repoList.appendChild(repoRow);
+        });
+
+
     } catch (err) {
         console.log(err)
     }
