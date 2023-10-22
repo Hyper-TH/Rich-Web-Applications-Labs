@@ -28,6 +28,7 @@ function getResponse(url) {
 };
 
 async function findUser() { 
+    // clearFields();
     let username = document.getElementById('username').value;
     try {
 
@@ -48,16 +49,16 @@ async function findUser() {
             </tr>
             <tr>
                 <th>Email: </th>
-                <td>${data.email}</td>
+                <td>${data.email ? data.name : 'N/A'}</td>
             </tr>
             <tr>
                 <th>Username: </th>
-                <td>${data.login}</td>
+                <td>${data.login ? data.login : 'N/A'}</td>
             </tr>
             <tr>
                 
                 <th>Location: </th>
-                <td>${data.location}</td>
+                <td>${data.location? data.location : 'N/A'}</td>
             </tr>
             <tr>
                 <th>Number of Gists: </th>
@@ -72,14 +73,15 @@ async function findUser() {
         // Table that contains the repositories and its details
         repoData.forEach(el => {
             let repoRow = document.createElement('tbody');  // Every repo is a body
+            
             repoRow.innerHTML = `
                 <tr>
                     <th>Name: </th>
-                    <td>${el.name}</td>
+                    <td>${el.name ? el.name : 'N/A'}</td>
                 </tr>    
                 <tr>
                     <th>Description: </th>
-                    <td>${el.description}</td>
+                    <td>${el.description ? el.description : 'No description found'}</td>
                 </tr>
             `;
             repoList.appendChild(repoRow);
