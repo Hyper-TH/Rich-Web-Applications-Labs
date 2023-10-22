@@ -30,29 +30,51 @@ async function findUser() {
         const avatar = document.getElementById('userAvatar');
         avatar.src = data.avatar_url;
 
-        const list = document.querySelector('#Ulist');
-        const row = document.createElement('tr');
+        const list = document.querySelector('#userInfo');
+        const row = document.createElement('tbody');
 
         row.innerHTML = `
-            <td>${data.name}</td>
-            <td>${data.login}</td>
-            <td>${data.email}</td>
-            <td>${data.location}</td>
-            <td>${data.public_gists}</td>
+            <tr>
+                <th>Name: </th>
+                <td>${data.name}</td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td>${data.email}</td>
+            </tr>
+            <tr>
+                <th>Username: </th>
+                <td>${data.username}</td>
+            </tr>
+            <tr>
+                
+                <th>Location: </th>
+                <td>${data.location}</td>
+            </tr>
+            <tr>
+                <th>Number of Gists: </th>
+                <td>${data.public_gists}</td>
+            </tr>
         `;
         list.appendChild(row);
 
         const repoData = await getResponse(`${api_url}/${username}/repos`);
         console.log(repoData);
 
-        const repoList = document.querySelector('#Rlist');
+        const repoList = document.querySelector('#repoInfo');
         
         repoData.forEach(el => {
             console.log(el);
-            let repoRow = document.createElement('tr');
+            let repoRow = document.createElement('tbody');
             repoRow.innerHTML = `
-                <td>${el.name}</td>
-                <td>${el.description}</td>
+                <tr>
+                    <th>Name: </th>
+                    <td>${el.name}</td>
+                </tr>    
+                <tr>
+                    <th>Description: </th>
+                    <td>${el.description}</td>
+                </tr>
             `;
             repoList.appendChild(repoRow);
         });
