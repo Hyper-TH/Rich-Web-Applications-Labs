@@ -26,6 +26,21 @@ async function findUser() {
     try {
         const data = await getResponse(`${api_url}/${username}`);
         console.log(data);
+
+        const avatar = document.getElementById('userAvatar');
+        avatar.src = data.avatar_url;
+
+        const list = document.querySelector('#Ulist');
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${data.name}</td>
+            <td>${data.login}</td>
+            <td>${data.email}</td>
+            <td>${data.location}</td>
+            <td>${data.public_gists}</td>
+        `;
+        list.appendChild(row);
     } catch (err) {
         console.log(err)
     }
