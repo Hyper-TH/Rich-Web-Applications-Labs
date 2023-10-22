@@ -61,35 +61,26 @@ document.querySelector('#search').addEventListener('submit', (e) => {
     e.preventDefault(); 
 
     const inputNum = document.querySelector('#num-2').value;
-    const searchList = document.querySelector('#Nlist');
-    const noResult = document.querySelector('#noResult');
+    const table = document.querySelector('#search-results');
 
     let books = Directory.getBooks();
     let searched = false;
 
+    // Search number 
     books.forEach(book => {
         if(book.num == inputNum) {
-            // insert element here
-            searchList.style.display = 'block';
-            const rows = document.createElement('tr');
-            rows.innerHTML = `
-            <tr>
-                <th> Name </tj>
-                <th> Phone Number </tj>
-                <th> Email </tj>
-            </tr>
-                <td>${book.name}</td>
-                <td>${book.num}</td>
-                <td>${book.email}</td>
-            `;
-            searchList.appendChild(rows);
+            PhoneDirectory.findBook(book);
+
+            table.style.display = 'table';
             noResult.style.display = 'none';
+
             searched = true;
         }
+
     });
     
     if (!searched) {
-        searchList.style.display = 'none';
+        const noResult = document.querySelector('#noResult');
         noResult.style.display = 'block';
     }
 

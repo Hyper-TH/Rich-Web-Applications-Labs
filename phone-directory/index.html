@@ -33,16 +33,25 @@
             <p>Search contact by Mobile No:</p>
             <input type="text" id="num-2" placeholder="Enter number">
             <input type="submit" id="button" value="search">
-
-            <table id="search-results">
-                <thead>
-                    <tbody id="Nlist" style = "display: none;"></tbody>
-                </thead>
-                <div id ="noResult" style="display: none;">
-                    <p>No results found</p>
-                </div>
-            </table>
         </form>
+
+        <table id="search-results" style="display: none;">
+            <caption>Search Results</caption>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="Nlist">
+            </tbody>
+        </table>
+
+        <!-- Only appears when no results are found -->
+        <div id ="noResult" style="display: none;">
+            <p>No results found</p>
+        </div>
 
         <table id="contacts">
             <caption>Contacts Summary</caption>
@@ -52,8 +61,9 @@
                     <th>Phone Number</th>
                     <th>Email</th>
                 </tr>
-                <tbody id="Plist"></tbody>
             </thead>
+            <tbody id="Plist">    
+            </tbody>
         </table>
 
     </body>
