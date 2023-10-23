@@ -31,7 +31,7 @@
             
         <form id="search">
             <p>Search contact by Mobile No:</p>
-            <input type="text" id="num-2" placeholder="Enter number">
+            <input type="text" id="num-2" placeholder="Enter number" onkeyup="findBook2()">
             <input type="submit" id="button" value="search">
         </form>
 
@@ -44,8 +44,9 @@
                     <th>Email</th>
                 </tr>
             </thead>
-            <tbody id="Nlist">
-            </tbody>
+            <!-- UNCOMMENT FOR BUTTON SEARCH -->
+            <!-- <tbody id="Nlist">
+            </tbody> -->
         </table>
 
         <!-- Only appears when no results are found -->

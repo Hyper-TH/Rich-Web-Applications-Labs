@@ -57,38 +57,38 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     }
 });
 
-document.querySelector('#num-2').addEventListener('submit', (e) => {
-    e.preventDefault(); 
+// If want to use search button
+// document.querySelector('#num-2').addEventListener('submit', (e) => {
+//     e.preventDefault(); 
 
-    const inputNum = document.querySelector('#num-2').value;
-    const table = document.querySelector('#search-results');
+//     const inputNum = document.querySelector('#num-2').value;
+//     const table = document.querySelector('#search-results');
 
-    let books = Directory.getBooks();
-    let searched = false;
+//     let books = Directory.getBooks();
+//     let searched = false;
 
-    // Search number 
-    books.forEach(book => {
-        if(book.num == inputNum) {
-            PhoneDirectory.findBook2();
+//     // Search number 
+//     books.forEach(book => {
+//         if(book.num == inputNum) {
+//             PhoneDirectory.findBook2();
 
-            table.style.display = 'table';
-            noResult.style.display = 'none';
+//             table.style.display = 'table';
+//             noResult.style.display = 'none';
 
-            searched = true;
-        }
-    });
+//             searched = true;
+//         }
+//     });
     
-    if (!searched) {
-        const noResult = document.querySelector('#noResult');
-        noResult.style.display = 'block';
-    }
+//     if (!searched) {
+//         const noResult = document.querySelector('#noResult');
+//         noResult.style.display = 'block';
+//     }
 
-});
+// });
 
 function findBook2() {
     const inputNum = document.querySelector('#num-2').value;
     const table = document.querySelector('#search-results');
-    // const list = document.querySelector('#Nlist');
     const row = document.createElement('tbody');
 
     let books = Directory.getBooks();
@@ -135,33 +135,6 @@ function findBook2() {
     
 }
 
-
-// function findBook2() {
-//     const inputNum = document.querySelector('#num-2').value;
-//     const table = document.querySelector('#search-results');
-
-//     let books = Directory.getBooks();
-//     let searched = false;
-
-//     // Search number 
-//     books.forEach(book => {
-//         if(book.num == inputNum) {
-//             PhoneDirectory.findBook2();
-
-//             table.style.display = 'table';
-//             noResult.style.display = 'none';
-
-//             searched = true;
-//         }
-//     });
-    
-//     if (!searched) {
-//         const noResult = document.querySelector('#noResult');
-//         noResult.style.display = 'block';
-//     }
-// }
-
-// TODO: Another click would sort it in descending order
 function sortTable(n) {
     var table;
     var rows;
