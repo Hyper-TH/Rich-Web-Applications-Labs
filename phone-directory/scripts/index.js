@@ -11,11 +11,8 @@ function clearFields() {
         console.log(`empty`)
 
     } else {
-        const u = document.getElementById('search-results');
-        
-        while (u.firstChild) {
-            u.removeChild(u.firstChild);
-        }
+        const u = document.getElementById('Nlist');
+        u.remove();
     }
 }
 
@@ -107,6 +104,7 @@ function findBook2() {
     const inputNum = document.querySelector('#num-2').value;
     const table = document.querySelector('#search-results');
     const row = document.createElement('tbody');
+    row.setAttribute('id', 'Nlist');
 
     let books = Directory.getBooks();
     let searched = false;
