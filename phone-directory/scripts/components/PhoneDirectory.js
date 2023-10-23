@@ -19,6 +19,7 @@ class PhoneDirectory {
                 <td style="background-color: #f2f2f2">${book.name}</td>
                 <td style="background-color: #f2f2f2">${book.num}</td>
                 <td style="background-color: #f2f2f2">${book.email}</td>
+
             `;
         } else {
             row.innerHTML = `
