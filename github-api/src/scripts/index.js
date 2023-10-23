@@ -2,8 +2,15 @@ const api_url='https://api.github.com/users';
 
 // Attempt clear fields for every search
 function clearFields() {
-    document.querySelector('#userInfo').empty();
-    document.querySelector('#repoInfo').empty();
+    if (document.querySelectorAll('#userInfo tbody').length == 0) {
+        console.log(`empty`)
+
+    } else {
+        const u = document.getElementById('userInfo');
+        while (u.firstChild) {
+            u.removeChild(u.firstChild);
+        }
+    }
 };
 
 function getResponse(url) {
@@ -28,9 +35,9 @@ function getResponse(url) {
 };
 
 async function findUser() { 
-    // clearFields();
     let username = document.getElementById('username').value;
     try {
+        clearFields();
 
         const data = await getResponse(`${api_url}/${username}`);
         console.log(data);
@@ -69,7 +76,8 @@ async function findUser() {
 
         const repoData = await getResponse(`${api_url}/${username}/repos`);
         const repoList = document.querySelector('#repoInfo');
-        
+
+
         // Table that contains the repositories and its details
         repoData.forEach(el => {
             let repoRow = document.createElement('tbody');  // Every repo is a body
