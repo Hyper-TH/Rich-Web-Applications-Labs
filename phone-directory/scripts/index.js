@@ -86,16 +86,7 @@ document.querySelector('#search').addEventListener('submit', (e) => {
 
 });
 
-// TODO: Delete entries
-// document.querySelector('#Plist').addEventListener('click', (e) => {
-//     PhoneDirectory.deleteBook(e.target);
 
-//     Directory.removeBook(e.target.parentElement.previousElementSibling.textContent);
-    
-//     PhoneDirectory.Alert("remove");
-// });
-
-// Sort the table (bubble sort)
 // TODO: Another click would sort it in descending order
 function sortTable(n) {
     var table, rows;
