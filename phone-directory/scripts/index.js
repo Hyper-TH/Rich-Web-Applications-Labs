@@ -57,7 +57,7 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     }
 });
 
-document.querySelector('#search').addEventListener('submit', (e) => {
+document.querySelector('#num-2').addEventListener('submit', (e) => {
     e.preventDefault(); 
 
     const inputNum = document.querySelector('#num-2').value;
@@ -69,14 +69,13 @@ document.querySelector('#search').addEventListener('submit', (e) => {
     // Search number 
     books.forEach(book => {
         if(book.num == inputNum) {
-            PhoneDirectory.findBook(book);
+            PhoneDirectory.findBook2();
 
             table.style.display = 'table';
             noResult.style.display = 'none';
 
             searched = true;
         }
-
     });
     
     if (!searched) {
@@ -86,56 +85,136 @@ document.querySelector('#search').addEventListener('submit', (e) => {
 
 });
 
+function findBook2() {
+    const inputNum = document.querySelector('#num-2').value;
+    const table = document.querySelector('#search-results');
+    // const list = document.querySelector('#Nlist');
+    const row = document.createElement('tbody');
+
+    let books = Directory.getBooks();
+    let searched = false;
+
+    // Search number 
+    books.forEach(book => {
+        
+        if((book.num).includes(inputNum)) {
+
+            table.style.display = 'table';
+            noResult.style.display = 'none';
+
+            if (isOdd(book.num)) {
+                row.innerHTML += `
+                    <tr>
+                        <td style="background-color: #f2f2f2">${book.name}</td>
+                        <td style="background-color: #f2f2f2">${book.num}</td>
+                        <td style="background-color: #f2f2f2">${book.email}</td>
+                    </tr>
+                `;
+            } else {
+                row.innerHTML += `
+                <tr>
+                    <td>${book.name}</td>
+                    <td>${book.num}</td>
+                    <td>${book.email}</td>
+                </tr>
+                `;
+            }
+            table.appendChild(row);
+
+            searched = true;
+        }
+
+        // should append at the end of the loop
+    });
+    
+    if (!searched) {
+        const noResult = document.querySelector('#noResult');
+        noResult.style.display = 'block';
+    }
+
+    
+}
+
+
+// function findBook2() {
+//     const inputNum = document.querySelector('#num-2').value;
+//     const table = document.querySelector('#search-results');
+
+//     let books = Directory.getBooks();
+//     let searched = false;
+
+//     // Search number 
+//     books.forEach(book => {
+//         if(book.num == inputNum) {
+//             PhoneDirectory.findBook2();
+
+//             table.style.display = 'table';
+//             noResult.style.display = 'none';
+
+//             searched = true;
+//         }
+//     });
+    
+//     if (!searched) {
+//         const noResult = document.querySelector('#noResult');
+//         noResult.style.display = 'block';
+//     }
+// }
 
 // TODO: Another click would sort it in descending order
 function sortTable(n) {
-    var table, rows;
+    var table;
+    var rows;
     var switching;
+    var i;
+    var x;
+    var y;
     var shouldSwitch;
     var dir;
-    var switchCount;
-    table = document.getElementById('contacts');
+    var switchCount = 0;
+    table = document.getElementById("contacts");
     switching = true;
 
-    // Initially sort to asc (true)
-    dir = true;
+    // Set sorting direction to asc
+    dir = "asc";
 
-    while (switching) {
+    // loop to continue until no switching done
+    while(switching) {
         switching = false;
         rows = table.rows;
 
-        // Loop through table rows (excluding table headers)
-        for (i = 1; i < (rows.length - 1); i++) {
+        // loop through table rows minusing the table headers
+        for(i = 1; i < (rows.length - 1); i++) {
             shouldSwitch = false;
 
-            // Get two el to compare, curr row to next row
-            let x = rows[i].getElementsByTagName("td")[n];
-            let y = rows[i + 1].getElementsByTagName("td")[n];
+            // Get two elements to compare, from curr row to next row
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
 
-            // Check if they should switch
-            if (dir) {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            // Check if two rows should switch, based on asc or desc
+            if (dir == "asc") {
+                if(x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
-                }
-            } else if (!dir) {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                } // End inner if
+            } else if (dir == "desc") {
+                if(x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
-                }
-            }
-        }
+                } 
+            } 
+        };
 
         if (shouldSwitch) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-            
+
             switchCount++;
         } else {
-            if (switchCount == 0 && dir) {
-                dir = false;
+            if(switchCount == 0 && dir == "asc") {
+                dir = "desc";
                 switching = true;
-            }
-        }
-    }
+            } 
+        };
+    } 
 };
