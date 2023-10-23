@@ -7,8 +7,14 @@ function clearFields() {
 
     } else {
         const u = document.getElementById('userInfo');
+        const r = document.getElementById('repoInfo');
+
         while (u.firstChild) {
             u.removeChild(u.firstChild);
+        }
+
+        while (r.firstChild) {
+            r.removeChild(r.firstChild);
         }
     }
 };
