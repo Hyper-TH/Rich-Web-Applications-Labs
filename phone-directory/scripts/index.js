@@ -5,6 +5,20 @@ const emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9
 // Once DOM is loaded, display data
 document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
+// Clear fields
+function clearFields() {
+    if (document.querySelectorAll('#search-results tbody').length == 0) {
+        console.log(`empty`)
+
+    } else {
+        const u = document.getElementById('search-results');
+        
+        while (u.firstChild) {
+            u.removeChild(u.firstChild);
+        }
+    }
+}
+
 // Validation
 document.querySelector('#phone-form').addEventListener('submit', (e) => {
     e.preventDefault(); // This stops re-rendering the error divs for some reason
@@ -87,6 +101,9 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
 // });
 
 function findBook2() {
+
+    clearFields();
+
     const inputNum = document.querySelector('#num-2').value;
     const table = document.querySelector('#search-results');
     const row = document.createElement('tbody');
@@ -124,15 +141,12 @@ function findBook2() {
             searched = true;
         }
 
-        // should append at the end of the loop
     });
     
     if (!searched) {
         const noResult = document.querySelector('#noResult');
         noResult.style.display = 'block';
     }
-
-    
 }
 
 function sortTable(n) {
