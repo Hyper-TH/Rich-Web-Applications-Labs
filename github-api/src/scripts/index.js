@@ -1,25 +1,3 @@
-// Clear fields for every search
-function clearFields() {
-
-    // If no user info found
-    if (document.querySelectorAll('#Ulist tr').length == 0) {
-        console.log(`No user info found`)
-    } else {
-        const u = document.getElementById('Ulist');
-        u.remove();
-    }
-
-    // If no repo list found
-    if (document.querySelectorAll('#Rlist tr').length == 0) {
-        console.log(`No repos found`)
-    } else {
-        const r = document.getElementById('Rlist');
-        while (r.firstChild) {
-            r.removeChild(r.firstChild);
-        }
-    }
-};
-
 async function findUser() { 
     try {
         let username = document.getElementById('username').value;
@@ -35,10 +13,11 @@ async function findUser() {
         userContainer.style.display = 'block';
         repoContainer.style.display = 'block';
     
-        // Set avatars
+        // Set avatar
         const avatar = document.getElementById('userAvatar');
         avatar.src = userData.avatar_url;
 
+        // Render the containers
         userRender(userData);
         repoRender(repoData);
         
