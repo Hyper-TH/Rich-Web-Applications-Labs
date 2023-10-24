@@ -108,9 +108,9 @@ async function findUser() {
         // TODO: REFER TO PHONE DIRECTORY ON HOW TO ADD DATA TO TABLE 
         // MULTIPLE TBODIES FOUND WITHIN USERREPO TABLE
         
-        if (document.querySelectorAll('#Rlist tr').length > 5) {
-            let r = document.getElementById('userRepos');
-            r.classList.add('add-scroll');
+        if (document.querySelectorAll('#Rlist tr').length > 10) {
+            let wrapper = document.getElementById('repoTableWrapper');
+            wrapper.classList.add('add-scroll');
         }
 
     } catch (err) {
