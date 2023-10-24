@@ -28,18 +28,23 @@ table {
 
 #userInfo td {
     border: 1px solid;
-}
+} 
 
 #userInfo th {
     border: 1px solid;
 }
 
-#repoInfo td{
+/* #repoInfo td{
     border: 1px solid;
 }
 
 #repoInfo th {
     border: 1px solid;
+} */
+
+#repoTableWrapper {
+    border: 1px solid;
+    height: 50%;
 }
 
 .add-scroll {
