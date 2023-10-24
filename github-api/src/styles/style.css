@@ -1,46 +1,68 @@
+body {
+    font-size: calc(15px + 0.390625vw);
+    background-color: #98B4D4;
+}
+
+h1 {
+    font-size: calc(16px + 2vw);
+}
+
 /* START MAIN CONTAINERS */
 #mainContainer {
     display: flex;
     margin-left: 15%;
     margin-right: 15%;
+    background-color: #d4b898;
 }
 
 #userProfile {
+    display: none;
     flex: 1;
 }
 
-#userProfile  img{
-    max-width: 50%;
+#userProfile img {
+    margin-left: 10%;
+    max-width: 80%;
     height: auto;   
 }
 
 #userRepos {
+    display: none;
     flex: 1;
 }
 /* END MAIN CONTAINERS */
 
+/* START SEARCH BAR */
+.searchBar {
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.searchBar input {
+    width: 80%;
+    height: 30px;
+    border-radius:10px;
+}
+
+.searchBar button {
+    border-radius:10px;
+}
+/* END SEARCH BAR */
 
 table {
     text-align: left;
-    width: 50%;
     border-collapse: collapse;
 }
 
-#userInfo td {
+#Ulist td {
     border: 1px solid;
 } 
 
-#userInfo th {
+#Ulist th {
     border: 1px solid;
 }
-
-/* #repoInfo td{
-    border: 1px solid;
-}
-
-#repoInfo th {
-    border: 1px solid;
-} */
 
 #repoTableWrapper {
     border: 1px solid;

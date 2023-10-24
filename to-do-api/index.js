@@ -26,29 +26,29 @@ async function useData() {
     var newArray = [], wordObj;
 
     data.forEach(el => {
-        // let body = el.body.split(/[\\\s]+/);
-        let result = el.title.split(" ");
+        let body = el.body.split(/[\\\s]+/);
+        // let result = el.title.split(" ");
 
         // Get all titles with values > 6
-        if (result.length > 6) {     
-            console.log(`id:${el.id}; title: ${el.title}`);
-        }
+        // if (result.length > 6) {     
+        //     console.log(`id:${el.id}; title: ${el.title}`);
+        // }
 
         // Show word frequency map for all of the body contents of the posts
-        // body.forEach((word) => {
+        body.forEach((word) => {
 
-        //     // Check if word exists in the array using filter()
-        //     wordObj = newArray.filter((w) => {
-        //         return w.text == word;  // Return 
-        //     })
+            // Check if word exists in the array using filter()
+            wordObj = newArray.filter((w) => {
+                return w.text == word;  // Return 
+            })
 
-        //     // If it does exist (i.e., there's length)
-        //     if (wordObj.length) {
-        //         wordObj[0].size += 1;   // Increment its size
-        //     } else {
-        //         newArray.push({text: word, size: 1});   // Push new word 
-        //     };
-        // });        
+            // If it does exist (i.e., there's length)
+            if (wordObj.length) {
+                wordObj[0].size += 1;   // Increment its size
+            } else {
+                newArray.push({text: word, size: 1});   // Push new word 
+            };
+        });        
     });
 
     console.log(newArray);

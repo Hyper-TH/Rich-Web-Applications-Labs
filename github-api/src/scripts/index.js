@@ -4,13 +4,11 @@ const api_url='https://api.github.com/users';
 function clearFields() {
 
     // If no user info found
-    if (document.querySelectorAll('#userInfo tbody').length == 0) {
+    if (document.querySelectorAll('#Ulist tr').length == 0) {
         console.log(`No user info found`)
     } else {
-        const u = document.getElementById('userInfo');
-        while (u.firstChild) {
-            u.removeChild(u.firstChild);
-        }
+        const u = document.getElementById('Ulist');
+        u.remove();
     }
 
     // If no repo list found
@@ -48,16 +46,25 @@ function getResponse(url) {
 async function findUser() { 
     try {
         let username = document.getElementById('username').value;
+        const data = await getResponse(`${api_url}/${username}`);
 
         clearFields();
 
-        const data = await getResponse(`${api_url}/${username}`);
+        // Display the main containers
+        const userContainer = document.getElementById('userProfile');
+        const repoContainer = document.getElementById('userRepos');
 
+        userContainer.style.display = 'block';
+        repoContainer.style.display = 'block';
+    
+        // Set avatars
         const avatar = document.getElementById('userAvatar');
         avatar.src = data.avatar_url;
 
         const infoList = document.querySelector('#userInfo');
         const userRow = document.createElement('tbody');
+
+        userRow.setAttribute('id', 'Ulist');   
 
         // Table that contains the user's details
         userRow.innerHTML = `
@@ -109,11 +116,10 @@ async function findUser() {
             repoList.appendChild(repoDesc);
 
         });
-        // TODO: REFER TO PHONE DIRECTORY ON HOW TO ADD DATA TO TABLE 
-        // MULTIPLE TBODIES FOUND WITHIN USERREPO TABLE
-        
+
+        // ADD SCROLL
         let wrapper = document.getElementById('repoTableWrapper');
-        if (document.querySelectorAll('#Rlist tr').length > 10) {
+        if (document.querySelectorAll('#Rlist tr').length >= 10) {
             wrapper.style.display = 'block';
             wrapper.classList.add('add-scroll');
         } else {
