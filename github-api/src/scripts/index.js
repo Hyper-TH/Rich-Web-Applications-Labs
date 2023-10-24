@@ -1,18 +1,23 @@
 const api_url='https://api.github.com/users';
 
-// Attempt clear fields for every search
+// Clear fields for every search
 function clearFields() {
-    if (document.querySelectorAll('#userInfo tbody').length == 0) {
-        console.log(`empty`)
 
+    // If no user info found
+    if (document.querySelectorAll('#userInfo tbody').length == 0) {
+        console.log(`No user info found`)
     } else {
         const u = document.getElementById('userInfo');
-        const r = document.getElementById('repoInfo');
-
         while (u.firstChild) {
             u.removeChild(u.firstChild);
         }
+    }
 
+    // If no repo list found
+    if (document.querySelectorAll('#Rlist tr').length == 0) {
+        console.log(`No repos found`)
+    } else {
+        const r = document.getElementById('Rlist');
         while (r.firstChild) {
             r.removeChild(r.firstChild);
         }
@@ -41,12 +46,12 @@ function getResponse(url) {
 };
 
 async function findUser() { 
-    let username = document.getElementById('username').value;
     try {
+        let username = document.getElementById('username').value;
+        
         clearFields();
 
         const data = await getResponse(`${api_url}/${username}`);
-        console.log(data);
 
         const avatar = document.getElementById('userAvatar');
         avatar.src = data.avatar_url;
@@ -81,26 +86,28 @@ async function findUser() {
         infoList.appendChild(userRow);
 
         const repoData = await getResponse(`${api_url}/${username}/repos`);
-        const repoList = document.querySelector('#repoInfo');
+        const repoList = document.getElementById('Rlist');
 
 
         // Table that contains the repositories and its details
         repoData.forEach(el => {
-            let repoRow = document.createElement('tbody');  // Every repo is a body
-            
-            repoRow.innerHTML = `
-                <tr>
+            let repoName = document.createElement('tr');  
+            let repoDesc = document.createElement('tr');
+
+            repoName.innerHTML = `
                     <th>Name: </th>
                     <td>${el.name ? el.name : 'N/A'}</td>
-                </tr>    
-                <tr>
+            `;
+            repoDesc.innerHTML = `
                     <th>Description: </th>
                     <td>${el.description ? el.description : 'No description found'}</td>
-                </tr>
             `;
-            repoList.appendChild(repoRow);
-        });
+            repoList.appendChild(repoName);
+            repoList.appendChild(repoDesc);
 
+        });
+        // TODO: REFER TO PHONE DIRECTORY ON HOW TO ADD DATA TO TABLE 
+        // MULTIPLE TBODIES FOUND WITHIN USERREPO TABLE
 
     } catch (err) {
         console.log(err)
