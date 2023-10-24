@@ -48,7 +48,7 @@ function getResponse(url) {
 async function findUser() { 
     try {
         let username = document.getElementById('username').value;
-        
+
         clearFields();
 
         const data = await getResponse(`${api_url}/${username}`);
@@ -86,8 +86,7 @@ async function findUser() {
         infoList.appendChild(userRow);
 
         const repoData = await getResponse(`${api_url}/${username}/repos`);
-        const repoList = document.getElementById('Rlist');
-
+        const repoList = document.getElementById('Rlist');  // TBODY
 
         // Table that contains the repositories and its details
         repoData.forEach(el => {
@@ -108,6 +107,11 @@ async function findUser() {
         });
         // TODO: REFER TO PHONE DIRECTORY ON HOW TO ADD DATA TO TABLE 
         // MULTIPLE TBODIES FOUND WITHIN USERREPO TABLE
+        
+        if (document.querySelectorAll('#Rlist tr').length > 5) {
+            let r = document.getElementById('userRepos');
+            r.classList.add('add-scroll');
+        }
 
     } catch (err) {
         console.log(err)
