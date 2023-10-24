@@ -6,9 +6,15 @@ function getResponse(url) {
         .then(response => {
             if (response.status !== 200) {
                 console.log("Error. Status Code: " + response.status);
+
+                if (response.status == 404) {
+                    alert('No user found');
+
+                    return;
+                }
+                
                 return; 
             }
-
             response.json().then(data => {
                 resolve(data);
             });
