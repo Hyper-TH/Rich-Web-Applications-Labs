@@ -94,12 +94,16 @@ async function findUser() {
             let repoDesc = document.createElement('tr');
 
             repoName.innerHTML = `
-                    <th>Name: </th>
+                    <th style='border-right: 1px solid;'>Name: </th>
                     <td>${el.name ? el.name : 'N/A'}</td>
             `;
             repoDesc.innerHTML = `
-                    <th>Description: </th>
-                    <td>${el.description ? el.description : 'No description found'}</td>
+                    <th style='
+                            border-bottom: 1px solid;
+                            border-right: 1px solid;'>
+                        Description: 
+                    </th>
+                    <td style='border-bottom: 1px solid;'>${el.description ? el.description : 'No description found'}</td>
             `;
             repoList.appendChild(repoName);
             repoList.appendChild(repoDesc);
@@ -108,9 +112,13 @@ async function findUser() {
         // TODO: REFER TO PHONE DIRECTORY ON HOW TO ADD DATA TO TABLE 
         // MULTIPLE TBODIES FOUND WITHIN USERREPO TABLE
         
+        let wrapper = document.getElementById('repoTableWrapper');
         if (document.querySelectorAll('#Rlist tr').length > 10) {
-            let wrapper = document.getElementById('repoTableWrapper');
+            wrapper.style.display = 'block';
             wrapper.classList.add('add-scroll');
+        } else {
+            wrapper.style.display = 'none';
+            wrapper.classList.remove('add-scroll');
         }
 
     } catch (err) {
