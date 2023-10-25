@@ -3,16 +3,19 @@ body {
     background-color: #98B4D4;
 }
 
-h1 {
-    font-size: calc(16px + 2vw);
-}
-
 /* START MAIN CONTAINERS */
 #mainContainer {
     display: flex;
+    height: auto;
     margin-left: 15%;
     margin-right: 15%;
     background-color: #d4b898;
+    height: auto;
+}
+
+#mainContainer h1 {
+    font-size: calc(16px + 2vw);
+    text-align: center;
 }
 
 #userProfile {
@@ -52,20 +55,50 @@ h1 {
 /* END SEARCH BAR */
 
 table {
+    background-color: white;
     text-align: left;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */ /* This will not work for rounded corners*/
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+/* Apply a border to the right of all but the last column */
+table th:not(:last-child),
+table td:not(:last-child) {
+    border-right: 1px solid black;
+}
+
+/* Apply a border to the bottom of all but the last row */
+table > thead>tr:not(:last-child)>th,
+table > thead>tr:not(:last-child)>td,
+table > tbody>tr:not(:last-child)>th,
+table >tbody>tr:not(:last-child)>td,
+table >tfoot>tr:not(:last-child)>th,
+table >tfoot>tr:not(:last-child)>td,
+table >tr:not(:last-child)>td,
+table >tr:not(:last-child)>th,
+table >thead:not(:last-child),
+table >tbody:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+/* START USER TABLE */
+/* #Ulist th {
+    border: 1px solid black;
 }
 
 #Ulist td {
-    border: 1px solid;
-} 
+    border: 1px solid black;
+} */
+/* END USER TABLE */
 
-#Ulist th {
-    border: 1px solid;
-}
 
+/* TO-DO: FIX BORDERS FOR WRAPPER*/
+/* START REPO TABLE */
 #repoTableWrapper {
-    border: 1px solid;
     height: 50%;
 }
 
@@ -74,4 +107,5 @@ table {
     overflow-y: scroll;
     height: 30%;
 }
+/* END REPO TABLE */
   
