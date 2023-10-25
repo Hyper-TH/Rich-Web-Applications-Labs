@@ -8,16 +8,14 @@ function repoRender(data) {
             let repoDesc = document.createElement('tr');
 
             repoName.innerHTML = `
-                    <th style='border-right: 1px solid;'>Name: </th>
+                    <th>Name: </th>
                     <td>${el.name ? el.name : 'N/A'}</td>
             `;
             repoDesc.innerHTML = `
-                    <th style='
-                            border-bottom: 1px solid;
-                            border-right: 1px solid;'>
+                    <th>
                         Description: 
                     </th>
-                    <td style='border-bottom: 1px solid;'>${el.description ? el.description : 'No description found'}</td>
+                    <td>${el.description ? el.description : 'No description found'}</td>
             `;
             repoList.appendChild(repoName);
             repoList.appendChild(repoDesc);
