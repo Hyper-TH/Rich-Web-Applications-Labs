@@ -6,11 +6,12 @@ body {
 /* START MAIN CONTAINERS */
 #mainContainer {
     display: flex;
-    height: auto;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
     background-color: #d4b898;
-    height: auto;
+    height: 1000px;
+    border-radius: 15px;
+    border: 5px solid;
 }
 
 #mainContainer h1 {
@@ -20,6 +21,7 @@ body {
 
 #userProfile {
     display: none;
+    height: auto;
     flex: 1;
 }
 
@@ -27,9 +29,11 @@ body {
     margin-left: 10%;
     max-width: 80%;
     height: auto;   
+    border-radius: 50%;
 }
 
 #userRepos {
+    height: auto;
     display: none;
     flex: 1;
 }
@@ -85,27 +89,23 @@ table >tbody:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
-/* START USER TABLE */
-/* #Ulist th {
-    border: 1px solid black;
+th, td {
+    text-align: left;
+    padding: 10px;
 }
-
-#Ulist td {
-    border: 1px solid black;
-} */
-/* END USER TABLE */
 
 
 /* TO-DO: FIX BORDERS FOR WRAPPER*/
 /* START REPO TABLE */
 #repoTableWrapper {
+    display: none;
     height: 50%;
 }
 
 .add-scroll {
     overflow: hidden;
     overflow-y: scroll;
-    height: 30%;
+    height: auto;
 }
 /* END REPO TABLE */
   
