@@ -9,9 +9,13 @@ async function findUser() {
         // Display the main containers
         const userContainer = document.getElementById('userProfile');
         const repoContainer = document.getElementById('userRepos');
+        const mainContainer = document.getElementById('mainContainer')
 
+        mainContainer.style.removeProperty('display');
         userContainer.style.display = 'block';
         repoContainer.style.display = 'block';
+        userContainer.style.float = 'left';
+        repoContainer.style.float = 'right';
     
         // Set avatar
         const avatar = document.getElementById('userAvatar');
