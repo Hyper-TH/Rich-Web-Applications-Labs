@@ -6,51 +6,50 @@ function isOdd (number) {
 class PhoneDirectory {
     static displayBooks() {
         const books = Directory.getBooks();
+        let counter = 0;
 
-        books.forEach((book) => PhoneDirectory.addBook(book));
+        for (let i = 0; i < books.length; i++) {
+            if (isOdd(counter)) {
+                PhoneDirectory.addBook2(books[i]);
+            } else {
+                PhoneDirectory.addBook(books[i]);
+            }
+            counter = counter + 1;
+            console.log(`Current counter: ${counter}`);
+        }
+        // books.forEach((book) => PhoneDirectory.addBook(book));
     };
 
+    // Initially display all records
     static addBook(book) {
         const list = document.querySelector('#Plist');
         const row = document.createElement('tr');
 
-        if (isOdd(book.num)) {
-            row.innerHTML = `
-                <td style="background-color: #f2f2f2">${book.name}</td>
-                <td style="background-color: #f2f2f2">${book.num}</td>
-                <td style="background-color: #f2f2f2">${book.email}</td>
+        row.innerHTML = `
+            <td>${book.name}</td>
+            <td>${book.num}</td>
+            <td>${book.email}</td>
+        `;
 
-            `;
-        } else {
-            row.innerHTML = `
-                <td>${book.name}</td>
-                <td>${book.num}</td>
-                <td>${book.email}</td>
-            `;
-        }
         list.appendChild(row);
 
     };
 
-    static findBook(book) {
-        const list = document.querySelector('#Nlist');
+    // Add an odd row colored
+    static addBook2(book) {
+        const list = document.querySelector('#Plist');
         const row = document.createElement('tr');
 
-        if (isOdd(book.num)) {
-            row.innerHTML = `
-                <td style="background-color: #f2f2f2">${book.name}</td>
-                <td style="background-color: #f2f2f2">${book.num}</td>
-                <td style="background-color: #f2f2f2">${book.email}</td>
-            `;
-        } else {
-            row.innerHTML = `
-                <td>${book.name}</td>
-                <td>${book.num}</td>
-                <td>${book.email}</td>
-            `;
-        }
+        row.innerHTML = `
+            <td style="background-color: #f2f2f2">${book.name}</td>
+            <td style="background-color: #f2f2f2">${book.num}</td>
+            <td style="background-color: #f2f2f2">${book.email}</td>
+
+        `;
+
         list.appendChild(row);
-    }
+
+    };
      
     static Alert(message) {
         var divs = document.getElementsByClassName("response");
