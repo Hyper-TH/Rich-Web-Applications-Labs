@@ -15,7 +15,6 @@ class PhoneDirectory {
                 PhoneDirectory.addBook(books[i]);
             }
             counter = counter + 1;
-            console.log(`Current counter: ${counter}`);
         }
         // books.forEach((book) => PhoneDirectory.addBook(book));
     };
