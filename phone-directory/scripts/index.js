@@ -7,17 +7,16 @@ document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
 // Clear fields
 function clearFields() {
-    if (document.querySelectorAll('#search-results tbody').length == 0) {
+    if (document.querySelectorAll('#contacts tbody').length == 0) {
         console.log(`empty`)
 
     } else {
-        const u = document.getElementById('Nlist');
+        const u = document.getElementById('Plist');
         u.remove();
     }
 }
 
 // TODO: Fix ERROR DIV containers
-// TODO: No results found remove table headers
 // TODO: Improve no results div
 
 // Validation
@@ -73,50 +72,21 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     }
 });
 
-// If want to use search button
-// document.querySelector('#num-2').addEventListener('submit', (e) => {
-//     e.preventDefault(); 
-
-//     const inputNum = document.querySelector('#num-2').value;
-//     const table = document.querySelector('#search-results');
-
-//     let books = Directory.getBooks();
-//     let searched = false;
-
-//     // Search number 
-//     books.forEach(book => {
-//         if(book.num == inputNum) {
-//             PhoneDirectory.findBook2();
-
-//             table.style.display = 'table';
-//             noResult.style.display = 'none';
-
-//             searched = true;
-//         }
-//     });
-    
-//     if (!searched) {
-//         const noResult = document.querySelector('#noResult');
-//         noResult.style.display = 'block';
-//     }
-
-// });
-
 function findBook2() {
 
     clearFields();
 
     const inputNum = document.querySelector('#num-2').value;
-    const table = document.querySelector('#search-results');
+    const table = document.querySelector('#contacts');
     const row = document.createElement('tbody');
-    row.setAttribute('id', 'Nlist');
+    row.setAttribute('id', 'Plist');
 
     let books = Directory.getBooks();
     let searched = false;
 
     // Search number 
     books.forEach(book => {
-        
+
         if((book.num).includes(inputNum)) {
 
             table.style.display = 'table';
@@ -143,13 +113,14 @@ function findBook2() {
             table.appendChild(row);
 
             searched = true;
-        }
+        } 
 
     });
     
     if (!searched) {
         const noResult = document.querySelector('#noResult');
         noResult.style.display = 'block';
+        table.style.display = 'none';
     }
 }
 
