@@ -21,38 +21,39 @@ function getResponse(url) {
     
 };
 
+// TODO: separate into components
 async function useData() {
     const data = await getResponse(api_url);
     var newArray = [], wordObj;
 
-    data.forEach(el => {
+    data.map(el => {
         let body = el.body.split(/[\\\s]+/);
-        // let result = el.title.split(" ");
+        let result = el.title.split(" ");
 
         // Get all titles with values > 6
         // if (result.length > 6) {     
-        //     console.log(`id:${el.id}; title: ${el.title}`);
+        //     console.log(`id:${el.id} | title: ${el.title}`);
         // }
 
         // Show word frequency map for all of the body contents of the posts
-        body.forEach((word) => {
+        body.map((word) => {
 
             // Check if word exists in the array using filter()
             wordObj = newArray.filter((w) => {
-                return w.text == word;  // Return 
-            })
+                    return w.text == word;  // Return 
+                })
 
-            // If it does exist (i.e., there's length)
-            if (wordObj.length) {
-                wordObj[0].size += 1;   // Increment its size
-            } else {
-                newArray.push({text: word, size: 1});   // Push new word 
-            };
+                // If it does exist (i.e., there's length)
+                if (wordObj.length) {
+                    wordObj[0].size += 1;   // Increment its size
+                } else {
+                    newArray.push({text: word, size: 1});   // Push new word 
+                };
         });        
     });
 
+    console.log(`Task 2: `);
     console.log(newArray);
-    
 };
 
 useData();
