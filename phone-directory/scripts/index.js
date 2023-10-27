@@ -16,6 +16,10 @@ function clearFields() {
     }
 }
 
+// TODO: Fix ERROR DIV containers
+// TODO: No results found remove table headers
+// TODO: Improve no results div
+
 // Validation
 document.querySelector('#phone-form').addEventListener('submit', (e) => {
     e.preventDefault(); // This stops re-rendering the error divs for some reason
@@ -28,6 +32,7 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
     // If any of the fields are empty:
     if (name === '' || num == '' || email == '') {
         PhoneDirectory.Alert("error");
+        PhoneDirectory.clearFields(); 
     // If name is > 20
     } else if (name.length > 20 ) {
         console.log('name-error: > 20');
@@ -45,7 +50,7 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
         PhoneDirectory.clearFields();
         PhoneDirectory.clearFields();
     // If email passed is not a valid email || >= 40 in length
-    } else if (email.length >= 40 || !(emailReg.test(email))) {
+    } else if (email.length >= 40 || emailReg.test(email)) {
         console.log('email-error: !regex || >= 40 ');
         PhoneDirectory.Alert("email-error");
         PhoneDirectory.clearFields(); 
@@ -117,6 +122,7 @@ function findBook2() {
             table.style.display = 'table';
             noResult.style.display = 'none';
 
+            // TODO: This is wrong, make every ODD ROW colored
             if (isOdd(book.num)) {
                 row.innerHTML += `
                     <tr>
@@ -147,6 +153,7 @@ function findBook2() {
     }
 }
 
+// TODO: Make every odd row colored
 function sortTable(n) {
     var table;
     var rows;
