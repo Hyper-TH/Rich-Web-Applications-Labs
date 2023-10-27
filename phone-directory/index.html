@@ -9,6 +9,7 @@
         <script src="scripts/components/Phone.js" defer></script>
         <script src="scripts/components/Directory.js" defer></script>
         <script src="scripts/components/PhoneDirectory.js" defer></script>
+        <script src="scripts/components/validation.js" defer></script>
         <script src="scripts/index.js" defer></script>
     </head>
 
@@ -26,28 +27,14 @@
             <input type="text" id="num" placeholder="Enter number">
             <input type="email" id="email" placeholder="Enter email">
 
-            <input type="submit" id="button" value="ADD">
+            <input type="submit" id="button" value="ADD CONTACT">
         </form>
             
-        <form id="search">
-            <p>Search contact by Mobile No:</p>
+        <div id="search">
+            <label>Search contact by Mobile No:</label>
             <input type="text" id="num-2" placeholder="Enter number" onkeyup="findBook2()">
-            <input type="submit" id="button" value="search">
-        </form>
-
-        <table id="search-results" style="display: none;">
-            <caption> Search Results </caption>
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Name</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <!-- UNCOMMENT FOR BUTTON SEARCH -->
-            <!-- <tbody id="Nlist">
-            </tbody> -->
-        </table>
+            <!-- <input type="submit" id="button" value="search"> -->
+        </div>
 
         <!-- Only appears when no results are found -->
         <div id ="noResult" style="display: none;">
