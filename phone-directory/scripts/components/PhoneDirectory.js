@@ -9,7 +9,7 @@ class PhoneDirectory {
         let counter = 0;
 
         for (let i = 0; i < books.length; i++) {
-            if (isOdd(counter)) {
+            if (!(isOdd(counter))) {
                 PhoneDirectory.addBook2(books[i]);
             } else {
                 PhoneDirectory.addBook(books[i]);

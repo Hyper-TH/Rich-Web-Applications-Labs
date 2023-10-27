@@ -124,7 +124,4 @@ function sortTable(n) {
             } 
         };
     } 
-
-
-
 };
