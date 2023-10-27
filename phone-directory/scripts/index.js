@@ -83,17 +83,17 @@ function findBook2() {
 
     let books = Directory.getBooks();
     let searched = false;
+    let counter = 0;
 
     // Search number 
     books.forEach(book => {
-
+    
         if((book.num).includes(inputNum)) {
 
             table.style.display = 'table';
             noResult.style.display = 'none';
 
-            // TODO: This is wrong, make every ODD ROW colored
-            if (isOdd(book.num)) {
+            if (isOdd(counter)) {
                 row.innerHTML += `
                     <tr>
                         <td style="background-color: #f2f2f2">${book.name}</td>
@@ -111,7 +111,7 @@ function findBook2() {
                 `;
             }
             table.appendChild(row);
-
+            counter = counter + 1;
             searched = true;
         } 
 
