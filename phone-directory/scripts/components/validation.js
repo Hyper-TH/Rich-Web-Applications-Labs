@@ -1,3 +1,8 @@
+// TODO: FIX EMAIL REG
+// Regex values
+const nameReg = /^[a-zA-Z\s]+$/;
+const emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 // Validation
 document.querySelector('#phone-form').addEventListener('submit', (e) => {
     e.preventDefault(); // This stops re-rendering the error divs for some reason
@@ -28,7 +33,7 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
         PhoneDirectory.clearFields();
         PhoneDirectory.clearFields();
     // If email passed is not a valid email || >= 40 in length
-    } else if (email.length >= 40 || emailReg.test(email)) {
+    } else if (email.length >= 40 || !(emailReg.test(email))) {
         console.log('email-error: !regex || >= 40 ');
         PhoneDirectory.Alert("email-error");
         PhoneDirectory.clearFields(); 
