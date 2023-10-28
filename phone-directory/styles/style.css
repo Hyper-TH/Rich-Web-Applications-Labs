@@ -6,7 +6,7 @@
     display: block;
     border: 3px solid #467987;
     border-radius: 6px;
-    background-color: #a8d4df;
+    background-color: #9ec6d0;
     width: 45%;
     padding: 20px;
     margin-left: auto;
@@ -16,18 +16,10 @@
 
 #search {
     text-align:center;
-}
-
-#search-results th, td {
-    border: 1px solid;
-}
-
-#search-results {
-    background-color: white;
+    margin-top: 2%;
+    margin-bottom: 2%;
     margin-left: auto;
     margin-right: auto;
-    width: auto;
-    border-collapse: collapse;
 }
 
 #contacts th, td {
@@ -41,5 +33,3 @@
     width: auto;
     border-collapse: collapse;
 }
-
-
