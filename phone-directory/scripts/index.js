@@ -1,7 +1,3 @@
-// Regex values
-const nameReg = /^[a-zA-Z\s]+$/;
-const emailReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 // Once DOM is loaded, display data
 document.addEventListener('DOMContentLoaded', PhoneDirectory.displayBooks);
 
@@ -124,4 +120,30 @@ function sortTable(n) {
             } 
         };
     } 
+    
+    reColor();
 };
+
+// TD IS NOT CHANGING
+function reColor() {
+    const rows = document.getElementById('Plist').children;
+    console.log(rows);
+
+    for(i = 0; i < rows.length; i++) {  
+    
+        if (!isOdd(i)) {
+            let row = rows[i].getElementsByTagName('td');
+
+            for(k = 0; k < row.length; k++) {
+                row[k].style.backgroundColor = '#f2f2f2'
+            }
+
+        } else {
+            let row = rows[i].getElementsByTagName('td');
+
+            for(j = 0; j < row.length; j++) {
+                row[j].style.backgroundColor = '#ffffff'
+            }
+        }
+    }
+}
