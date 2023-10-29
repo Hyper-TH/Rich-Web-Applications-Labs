@@ -34,12 +34,8 @@ document.querySelector('#phone-form').addEventListener('submit', (e) => {
         PhoneDirectory.clearFields();
         PhoneDirectory.clearFields();
     // If email passed is >= 40 in length
-    } else if (email.length >= 40) {
+    } else if (email.length >= 40 || !emailReg.test(email)) {
         console.log('email-error: >= 40 ');
-        PhoneDirectory.Alert("email-error");
-        PhoneDirectory.clearFields(); 
-    } else if (!(emailReg.test(email))) {
-        console.log('email-error: !regex');
         PhoneDirectory.Alert("email-error");
         PhoneDirectory.clearFields(); 
     } else {
