@@ -78,7 +78,7 @@ table td:not(:last-child) {
 /* Apply a border to the bottom of all but the last row */
 table > thead>tr:not(:last-child)>th,
 table > thead>tr:not(:last-child)>td,
-table > tbody>tr:not(:last-child)>th,
+table >tbody>tr:not(:last-child)>th,
 table >tbody>tr:not(:last-child)>td,
 table >tfoot>tr:not(:last-child)>th,
 table >tfoot>tr:not(:last-child)>td,
@@ -94,8 +94,12 @@ th, td {
     padding: 10px;
 }
 
+.noResults {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-/* TO-DO: FIX BORDERS FOR WRAPPER*/
 /* START REPO TABLE */
 #repoTableWrapper {
     display: none;
