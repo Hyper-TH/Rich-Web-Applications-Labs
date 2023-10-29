@@ -1,4 +1,3 @@
-// TODO: FIX EMAIL REG
 // Regex values
 const nameReg = /^[a-zA-Z\s]+$/;
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
