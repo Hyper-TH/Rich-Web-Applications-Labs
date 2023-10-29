@@ -14,8 +14,6 @@ async function findUser() {
         mainContainer.style.removeProperty('display');
         userContainer.style.display = 'block';
         repoContainer.style.display = 'block';
-        userContainer.style.float = 'left';
-        repoContainer.style.float = 'right';
     
         // Set avatar
         const avatar = document.getElementById('userAvatar');
@@ -29,4 +27,3 @@ async function findUser() {
         console.log(err)
     }
 };
-
