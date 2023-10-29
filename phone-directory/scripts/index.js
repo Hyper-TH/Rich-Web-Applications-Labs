@@ -67,7 +67,6 @@ function findBook2() {
     }
 }
 
-// TODO: Make every odd row colored
 function sortTable(n) {
     var table, rows;
     var switching = true;
@@ -124,7 +123,7 @@ function sortTable(n) {
     reColor();
 };
 
-// TD IS NOT CHANGING
+// Function to reset colors of all rows
 function reColor() {
     const rows = document.getElementById('Plist').children;
     console.log(rows);
