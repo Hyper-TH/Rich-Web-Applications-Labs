@@ -4,6 +4,8 @@ async function findUser() {
         const userData = await getResponse(`${api_url}/${username}`);
         const repoData = await getResponse(`${api_url}/${username}/repos`) 
 
+        const noRepo = document.getElementById('noRepoResults');
+
         clearFields();
 
         // Display the main containers
@@ -21,7 +23,14 @@ async function findUser() {
 
         // Render the containers
         userRender(userData);
-        repoRender(repoData);
+
+        if (!(repoData)) {
+            console.log(`No repositories found`)
+            noRepo.style.display = 'block';
+        } else {
+            noRepo.style.display = 'none';
+            repoRender(repoData);
+        }
         
     } catch (err) {
         console.log(err)
