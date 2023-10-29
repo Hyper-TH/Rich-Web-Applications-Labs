@@ -21,14 +21,13 @@ function repoRender(data) {
             repoList.appendChild(repoDesc);
 
         });
-
+        
         // ADD SCROLL
         let wrapper = document.getElementById('repoTableWrapper');
-        if (document.querySelectorAll('#Rlist tr').length >= 10) {  // 10 because name is a row and desc is another row
+        if (document.querySelectorAll('#Rlist tr').length > 10) {  // 10 because name is a row and desc is another row
             wrapper.style.display = 'block';
             wrapper.classList.add('add-scroll');
         } else {
-            wrapper.style.display = 'none';
             wrapper.classList.remove('add-scroll');
         }
         
