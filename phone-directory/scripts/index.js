@@ -12,9 +12,6 @@ function clearFields() {
     }
 }
 
-// TODO: Fix ERROR DIV containers
-// TODO: Improve no results div
-
 function findBook2() {
 
     clearFields();
