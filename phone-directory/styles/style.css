@@ -2,6 +2,17 @@
     text-align: center;
 }
 
+.response {
+    text-align: center;
+    color: red;
+    display: none;
+}
+
+#noResult {
+    text-align: center;
+    display: none;
+}
+
 #phone-form {
     display: block;
     border: 3px solid #467987;
