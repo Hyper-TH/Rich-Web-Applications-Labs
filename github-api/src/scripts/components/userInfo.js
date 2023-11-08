@@ -13,7 +13,7 @@ function userRender(data) {
             </tr>
             <tr>
                 <th>Email: </th>
-                <td>${data.email ? data.name : 'N/A'}</td>
+                <td>${data.email ? data.email : 'N/A'}</td>
             </tr>
             <tr>
                 <th>Username: </th>
