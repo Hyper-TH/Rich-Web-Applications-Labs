@@ -17,6 +17,7 @@ function getResponse(url) {
             }
             response.json().then(data => {
                 resolve(data);
+                console.log(data);
             });
         })
         .catch(function(err) {
