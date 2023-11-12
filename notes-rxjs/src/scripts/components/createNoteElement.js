@@ -6,12 +6,11 @@ function createNoteElement(id, content, color) {
     element.placeholder = "Empty Note";
     element.style.backgroundColor = color;
 
-    // TODO: CONVERT TO RXJS (Observer)
-    // Add event listener
     element.addEventListener("change", () => {
         updateNote(id, element.value);
     });
 
+    // TODO: CONVERT TO RXJS
     // Event where user double clicks
     element.addEventListener("dblclick", () => {
         const doDelete = confirm("Are you sure you want to delete this note?");

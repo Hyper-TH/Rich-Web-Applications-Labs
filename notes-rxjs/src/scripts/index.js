@@ -1,21 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const { range, filter, map, Observable, fromEvent, interval } = rxjs;
+    const { fromEvent } = rxjs;
 
     const notesContainer = document.getElementById("app");
     const addNoteButton = notesContainer.querySelector(".add-note");
 
-    // FOr each note, create an element for them
+    // Create stream
+    const addNote$ = fromEvent(addNoteButton, 'click');
+    // const delNote$ = fromEvent()
+
+    // For each note, create an element for them
     getNotes().forEach((note) => {
         const noteElement = createNoteElement(note.id, note.content, note.color);
         notesContainer.insertBefore(noteElement, addNoteButton);
     });
 
-    // TODO: CONVERT TO RXJS (Observer)
     // Event listener for pressing plus button 
-    addNoteButton.addEventListener("click", () => addNote());
+    // addNoteButton$addEventListener("click", () => addNote());
+    addNote$.subscribe(() => {
+        addNote();
+    });
 
-        // interval observer
-        // const interval$ = interval(1000);
 
-        // interval$.subscribe(val => console.log(val));
+    // TODO: CONVERT TO RXJS
+    // Event where user double clicks
+    // element.addEventListener("dblclick", () => {
+    //     const doDelete = confirm("Are you sure you want to delete this note?");
+
+    //     if (doDelete) {
+    //         deleteNote(id, element);
+    //     }
+    // });
 });
