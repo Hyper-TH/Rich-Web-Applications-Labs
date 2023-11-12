@@ -14,6 +14,10 @@ function addNote() {
     };
 
     const noteElement = createNoteElement(noteObject.id, noteObject.content, noteObject.color);
+
+    // Attach noteObject to the noteElement
+    noteElement.noteObject = noteObject;
+
     notesContainer.insertBefore(noteElement, addNoteButton);
 
     notes.push(noteObject);
