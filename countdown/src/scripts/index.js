@@ -28,19 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Main observer
     const countDown$ = start$.pipe(
-        switchMapTo(() => interval(1000)),  
-        takeUntil(stop$),
-        startWith(getInitialTime()),
-        scan((acc) => acc - 1),
-        mapTo((count) => count >= 0 ? count : 0)
+        switchMapTo(() => interval(1000)),          // Emits values every 1000 millis using interval
+        takeUntil(stop$),                           // Stops countdown when stop stream is activated
+        startWith(getInitialTime()),                // Start with initial time
+        scan((acc) => acc - 1),                     // Decrements current value
+        mapTo((count) => count >= 0 ? count : 0)    // Ternary operator to ensure time does not go below zero
+                                                    // mapTo transforms the emitted values
     );
 
     // Subscribe to countDown stream
     countDown$.subscribe((count) => {
+        // Receive each emitted countdown value...
         const hours = Math.floor(count / 3600);
         const minutes = Math.floor((count % 3600) / 60);
         const seconds = count % 60;
 
+        // .... then updates the UI
         render.textContent = `${hours}H : ${minutes}M : ${seconds}S`;
 
         if (count === 0) {
