@@ -5,10 +5,6 @@ function createNoteElement(id, content, color) {
     element.value = content;
     element.placeholder = "Empty Note";
     element.style.backgroundColor = color;
-
-    element.addEventListener("change", () => {
-        updateNote(id, element.value);
-    });
-
+    
     return element;
 };
