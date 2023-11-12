@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create stream
     const addNote$ = fromEvent(addNoteButton, 'click');
-    // const delNote$ = fromEvent()
+    const delNote$ = fromEvent(notesContainer, 'dblclick');
 
     // For each note, create an element for them
     getNotes().forEach((note) => {
@@ -14,20 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
         notesContainer.insertBefore(noteElement, addNoteButton);
     });
 
-    // Event listener for pressing plus button 
-    // addNoteButton$addEventListener("click", () => addNote());
     addNote$.subscribe(() => {
         addNote();
     });
 
+    delNote$.subscribe((event) => {
+        const noteElement = event.target;
+        const id = noteElement.id;
+        const doDelete = confirm("Are you sure you want to delete this note?");
 
-    // TODO: CONVERT TO RXJS
-    // Event where user double clicks
-    // element.addEventListener("dblclick", () => {
-    //     const doDelete = confirm("Are you sure you want to delete this note?");
-
-    //     if (doDelete) {
-    //         deleteNote(id, element);
-    //     }
-    // });
+        if (doDelete) {
+            deleteNote(id, noteElement);
+        }
+    })
 });
