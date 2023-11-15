@@ -1,21 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const { fromEvent, interval, takeUntil,
-            switchMapTo, scan, startWith,
-            mapTo} = rxjs;
+    const { fromEvent, takeUntil, takeWhile, 
+            scan, startWith, mapTo} = rxjs;
 
     // Get buttons and where to render the timer
     const startButton = document.querySelector('#start');
     const stopButton = document.querySelector('#stop');
-    const render = document.querySelector('timer');
+    const renderTimer = document.querySelector('#timer');
 
     // Get inputs
     const inputHours = document.querySelector('#hour');
     const inputMinutes = document.querySelector('#minute');
     const inputSeconds = document.querySelector('#second');
-
-    // Create observers (streams from click events)
-    const start$ = fromEvent(startButton, 'click');
-    const stop$ = fromEvent(stopButton, 'click');
 
     // Get the input values and parse it into INT
     const getInitialTime = () => {
@@ -23,31 +18,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = parseInt(inputMinutes.value) || 0;
         const seconds = parseInt(inputSeconds.value) || 0;
 
+        console.log(`Input: ${hours} : ${minutes} : ${seconds}`);
+
         return (hours * 3600) + (minutes * 60) + seconds;
     };
-
-    // Main observer
-    const countDown$ = start$.pipe(
-        switchMapTo(() => interval(1000)),          // Emits values every 1000 millis using interval
-        takeUntil(stop$),                           // Stops countdown when stop stream is activated
-        startWith(getInitialTime()),                // Start with initial time
-        scan((acc) => acc - 1),                     // Decrements current value
-        mapTo((count) => count >= 0 ? count : 0)    // Ternary operator to ensure time does not go below zero
-                                                    // mapTo transforms the emitted values
-    );
-
-    // Subscribe to countDown stream
-    countDown$.subscribe((count) => {
+   
+    // TODO: have it so that the times are subscribed to the other
+    const render = (count) => {
         // Receive each emitted countdown value...
         const hours = Math.floor(count / 3600);
         const minutes = Math.floor((count % 3600) / 60);
         const seconds = count % 60;
 
         // .... then updates the UI
-        render.textContent = `${hours}H : ${minutes}M : ${seconds}S`;
+        renderTimer.textContent = `${hours}H : ${minutes}M : ${seconds}S`;
+    };
 
-        if (count === 0) {
-            render.textContent = `Finished countdown`;
-        };
-    });
+    // Create observers (streams from click events)
+    const start$ = fromEvent(startButton, 'click');
+    const stop$ = fromEvent(stopButton, 'click');
+
+    // start$.subscribe(() => alert('Hello'));
+    // Main observer
+    const $countdown = start$.pipe(
+        mapTo(-1),     
+        startWith(getInitialTime()),                
+        scan((acc, value) => acc + value, getInitialTime()),    // acc accumulated result and value current value emitted by observable
+        takeUntil(stop$),                              
+        takeWhile(value => value >= 0)
+    ).subscribe((value) => {
+        console.log(`Countdown: ${value}`);
+        render(value);
+
+        if (value === 0) {
+            renderTimer.textContent = `Finished countdown`;
+        }
+    });     
+
 });
