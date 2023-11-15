@@ -1,36 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const { fromEvent, interval, takeUntil, map, switchMap, tap } = rxjs;
+    const { fromEvent, interval, takeUntil, switchMap, tap } = rxjs;
 
+    const minutesInput = document.getElementById('minute');
+    const secondsInput = document.getElementById('second');
     const startButton = document.getElementById('start');
     const stopButton = document.getElementById('stop');
     const renderTimer = document.getElementById('timer');
-    const inputSeconds = document.getElementById('second');
-    
+
     const start$ = fromEvent(startButton, 'click');
     const stop$ = fromEvent(stopButton, 'click');
 
-    // Switch to new observable when start is clicked
+    // Combine minutes and seconds observables
     start$.pipe(
         switchMap(() => {
-            const seconds = parseInt(inputSeconds.value) || 0;  // Get initial seconds
-            let currentSecond = seconds;                        // Initialize a var to keep track
+            const minutes = parseInt(minutesInput.value) || 0;
+            const seconds = parseInt(secondsInput.value) || 0;
 
-            // Create interval observable, decrementing...
             return interval(1000).pipe(
-                takeUntil(stop$),   // ...until the stop button is clicked
-                map(() => --currentSecond), // Map each interval tick to the decremented second
-                tap(countdown => console.log(countdown))    
+                takeUntil(stop$),
+                takeUntil(start$),
+                tap(countdown => {
+                    const totalSeconds = minutes * 60 + seconds - countdown;
+                    const displayMinutes = Math.floor(totalSeconds / 60);
+                    const displaySeconds = totalSeconds % 60;
+
+                    console.log(`${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`);
+                    renderTimer.textContent = `${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`;
+                })
             );
         })
-    ).subscribe(result => {
-        const displaySeconds = result % 60; // Calculate remaining seconds...
-        renderTimer.textContent = `Result: ${displaySeconds}S`; // ...then update the UI
-
-        // When countdown finishes
-        if (result === 0) {
-            renderTimer.textContent = 'Countdown finished';
-        }
-    });
+    ).subscribe();
 });
-
-
