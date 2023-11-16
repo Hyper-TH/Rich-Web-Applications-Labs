@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const { fromEvent, interval, takeUntil, switchMap, tap } = rxjs;
+    const { fromEvent, interval, takeUntil, switchMap, tap, takeWhile, merge, startWith, take } = rxjs;
 
     const hoursInput = document.getElementById('hour');
     const minutesInput = document.getElementById('minute');
@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const start$ = fromEvent(startButton, 'click');
     const stop$ = fromEvent(stopButton, 'click');
+
+    // Function to create an observable for rendering "Time finished"
+    // TODO: SUBSCRIBE
+    const createFinishedObservable$ = () => {
+        return interval(1000).pipe(
+            take(1), // Emit only one value after 1000ms
+            tap(() => renderTimer.textContent = 'Time finished')
+        );
+    };
 
     // Switchmap to switch to a new observable when start is activated 
     start$.pipe(
