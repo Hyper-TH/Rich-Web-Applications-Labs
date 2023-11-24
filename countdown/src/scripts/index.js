@@ -33,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // interval observer for countdown
             return interval(1000).pipe(
-                takeWhile(countdown => countdown < totalSeconds),   // Finish at 1 second
-                takeUntil(stop$),   // takeUntil either button is clicked (TODO: these could be merged)
+                takeWhile(countdown => countdown <= totalSeconds),   // Finish at 1 second
+                takeUntil(stop$),   // takeUntil either button is clicked 
                 takeUntil(start$),
+
                 // Tap into observable to perform side effects (logging and rendering) so that it does not affect the values
                 tap(countdown => {
                     const remainingSeconds = totalSeconds - countdown;
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const displaySeconds = remainingSeconds % 60;
 
                     console.log(`${displayHours}H : ${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`);
-                    renderTimer.textContent = `${displayHours}H : ${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`;
+                    renderTimer.textContent = `${displayHours}H : ${displayMinutes}M : ${displaySeconds}S`;
                 })
             );
         })
