@@ -6,20 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsInput = document.getElementById('second');
 
     const startButton = document.getElementById('start');
-    const stopButton = document.getElementById('stop');
+    const pauseButton = document.getElementById('pause');
+    const resetButton = document.getElementById('reset');
     const renderTimer = document.getElementById('timer');
 
     const start$ = fromEvent(startButton, 'click');
-    const stop$ = fromEvent(stopButton, 'click');
+    const pause$ = fromEvent(pauseButton, 'click');
+    const reset$ = fromEvent(resetButton, 'click');
 
-    // Function to create an observable for rendering "Time finished"
-    // TODO: SUBSCRIBE
-    const createFinishedObservable$ = () => {
-        return interval(1000).pipe(
-            take(1), // Emit only one value after 1000ms
-            tap(() => renderTimer.textContent = 'Time finished')
-        );
-    };
+    // Flag to indicate whether state is paused or not
+    let intervalSubscription;
+    let pauseFlag = false;
 
     // Switchmap to switch to a new observable when start is activated 
     start$.pipe(
@@ -34,21 +31,65 @@ document.addEventListener('DOMContentLoaded', () => {
             // interval observer for countdown
             return interval(1000).pipe(
                 takeWhile(countdown => countdown <= totalSeconds),   // Finish at 1 second
-                takeUntil(stop$),   // takeUntil either button is clicked 
-                takeUntil(start$),
+                takeUntil(reset$), 
 
-                // Tap into observable to perform side effects (logging and rendering) so that it does not affect the values
+                // Tap into observable to perform side effects (logging and rendering) so that it does not affect the emitted values
                 tap(countdown => {
-                    const remainingSeconds = totalSeconds - countdown;
 
-                    const displayHours = Math.floor(remainingSeconds / 3600);
-                    const displayMinutes = Math.floor((remainingSeconds % 3600) / 60);
-                    const displaySeconds = remainingSeconds % 60;
+                    // If state is not paused, render
+                    if(!pauseFlag) {
+                        const remainingSeconds = totalSeconds - countdown;
 
-                    console.log(`${displayHours}H : ${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`);
-                    renderTimer.textContent = `${displayHours}H : ${displayMinutes}M : ${displaySeconds}S`;
-                })
+                        const displayHours = Math.floor(remainingSeconds / 3600);
+                        const displayMinutes = Math.floor((remainingSeconds % 3600) / 60);
+                        const displaySeconds = remainingSeconds % 60;
+
+                        console.log(`${displayHours}H : ${displayMinutes}M : ${displaySeconds}S Countdown: ${countdown}`);
+                        renderTimer.textContent = `${displayHours}H : ${displayMinutes}M : ${displaySeconds}S`;
+
+
+                        // Check if the countdown reaches 0 and render "Timer finished"
+                        if (countdown === totalSeconds) {
+                            renderTimer.textContent = 'Timer finished';
+                        }
+                    } // end outer if
+
+                }) // end tap
             );
         })
-    ).subscribe();  // subscribe to the observable created by the switchMap
+    // subscribe to the observable created by the switchMap
+    ).subscribe({
+        // Callback function invoked for each emitted countdown value
+        next: (countdown) => {
+            if (countdown === 0) {
+                // If countdown finishes, resset pause flag
+                pauseFlag = false;
+            }
+        },
+        // Callback function invoked when observable is complete
+        complete: () => {
+            // When countdown completes, clear interval subscription
+            intervalSubscription = undefined;
+            
+            // But this will not because it's not part of the observable pipeline...
+            // tap(renderTimer.textContent = 'Timer finished')
+        }
+    });
+
+    // If button/event is triggered...
+    pause$.subscribe(() => {
+        pauseFlag = !pauseFlag; // ...toggle
+    });
+
+    // If reset event is triggered...
+    reset$.subscribe(() => {
+        // If there is an active interval subscription, clear it
+        if (intervalSubscription) {
+            intervalSubscription.unsubscribe();
+        }
+
+        // Reset pause flag and clear render
+        pauseFlag = false;
+        renderTimer.textContent = '';
+    });
 });
