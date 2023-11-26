@@ -9,14 +9,48 @@ body {
     margin: 0;
 }
   
-#countdown {
+/* START MAIN CONTAINERS */
+#mainContainer {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #d4b898;
+    height: 1000px;
+    border-radius: 15px;
+    border: 5px solid;
+}
+
+#mainContainer h1 {
+    font-size: calc(16px + 2vw);
+}
+
+
+/* END MAIN CONTAINERS */
+#header {
     text-align: center;
+    height: auto;
+    flex: 1;
+}
+
+#input {
+    height: auto;
+    flex: 1;
+}
+
+#buttons {
+    text-align: center;
+    height: auto;
+    flex: 1;
 }
   
+  
 #timer {
+    text-align: center;
     font-size: 3em;
     margin: 20px 0;
     color: #00ff84;
+    height: auto;
+    flex: 1;
 }
   
 input {
