@@ -91,6 +91,17 @@ export const NotesPage = ({ subPageName, backTo }) => {
             </div>
             <h1>Hyper's notes app</h1>
         </div>
+        
+        <button className="button">
+                <Link to={backTo}>Back to Home</Link>
+        </button>
+        
+        <div className="addNote">
+            <input type="text" className="input-box" onChange={handleChange} />
+            <button className="button" onClick={addNote}>Add Note</button>
+        </div>
+
+
 
         <div id="app">
                 {notesList.map((note) => {
@@ -104,14 +115,9 @@ export const NotesPage = ({ subPageName, backTo }) => {
                         />
                     );
                 })}
+        
         </div>
-        <div className="add-note">
-            <input type='text' onChange={handleChange} />
-            <button onClick={addNote}>Add Note</button>
-        </div>
-        <button>
-                <Link to={backTo}>Back to Home</Link>
-        </button>
+
         </>
     );
 };
