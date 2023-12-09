@@ -104,6 +104,36 @@ app.post('/deleteNote', async (req, res) => {
     }
 });
 
+// Endpoint to update a note in Firestore
+app.post('/updateNote', async (req, res) => {
+    try {
+        const { id, content } = req.body;
+
+        console.log(`Got: ${id}, ${content}`);
+
+        if (!content) {
+            return res.status(400).json({ error: `Note requires content to be updated`});
+        }
+
+        const collectionName = 'Notes';
+
+        const notesRef = firestore.collection(collectionName);
+        const querySnapshot = await notesRef.where('id', '==', id).get();
+
+        if (querySnapshot.empty) {
+            return res.status(404).json({ error: 'Note not found' });
+        }
+
+        const doc = querySnapshot.docs[0];
+        await doc.ref.update({ content });
+
+        res.json({ message: 'Note updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Firebase Server Error' });
+    }
+});
+
 // Start server
 app.listen(8000, () => {
     console.log(`Server is running on port 8000.`);
