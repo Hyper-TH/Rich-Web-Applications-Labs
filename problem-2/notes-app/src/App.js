@@ -27,7 +27,7 @@ function App() {
 				<Route 
 					path="/catfacts" 
 					element={
-						<NotesPage 
+						<CatFactsPage 
 							subPageName="CatFactsPage"
 							backTo="/"
 						/>
