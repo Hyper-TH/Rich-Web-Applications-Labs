@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Note } from '../components/Note';  
+import '../styles/NotesPage.css';
 
 export const NotesPage = ({ subPageName, backTo }) => {
     const [notesList, setNoteList] = useState([]);
@@ -71,7 +72,7 @@ export const NotesPage = ({ subPageName, backTo }) => {
             });
 
             console.log(`Attempting to fetch notes now..`);
-            
+
             // Fetch updated notes
             await fetchNotes();
 
@@ -83,8 +84,8 @@ export const NotesPage = ({ subPageName, backTo }) => {
 
     return (
         <>
-            <div className="App">
-                <div className="addNote">
+            <div id="app">
+                <div className="add-note">
                     <input type='text' onChange={handleChange} />
                     <button onClick={addNote}>Add Note</button>
                 </div>
