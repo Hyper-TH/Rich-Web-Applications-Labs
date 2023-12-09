@@ -64,9 +64,43 @@ app.post('/putNotes', async (req, res) => {
         // Add the note to the notes collection in Firestore
         await firestore.collection(collectionName).add(data);
 
+        res.json({ message: 'Note added successfully' });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: `Firebase Server Error` });
+    }
+});
+
+// Endpoint to delete a note from Firestore
+app.post('/deleteNote', async (req, res) => {
+    try {
+        const { id } = req.body;
+        console.log(`Got id: ${id}`);
+
+        if (!id) {
+            return res.status(400).json({ error: 'Note ID is required for deletion' });
+        }
+
+        const collectionName = 'Notes';
+
+        // Find and delete the note from the notes collection in Firestore based on the 'id' field
+        const notesRef = firestore.collection(collectionName);
+        const querySnapshot = await notesRef.where('id', '==', id).get();
+
+        if (querySnapshot.empty) {
+            return res.status(404).json({ error: 'Note not found' });
+        }
+
+        // Assuming there's only one document with the given 'id', delete it
+        const doc = querySnapshot.docs[0];
+        await doc.ref.delete();
+
+        res.json({ message: 'Note deleted successfully' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Firebase Server Error' });
     }
 });
 
