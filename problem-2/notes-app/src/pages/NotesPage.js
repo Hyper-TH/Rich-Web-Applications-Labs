@@ -1,9 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Note } from '../components/Note';  
 
-export const NotesPage = ({subPageName, backTo}) => {
+export const NotesPage = ({ subPageName, backTo }) => {
     const [notesList, setNoteList] = useState([]);
     const [error, setError] = useState("");
     const [newNote, setNewNote] = useState("");
@@ -16,7 +16,7 @@ export const NotesPage = ({subPageName, backTo}) => {
     const fetchNotes = async () => {
         try {
             const response = await Axios.get(`http://localhost:8000/getNotes`);
-        
+
             if (response.data && response.data.documents) {
                 setNoteList(response.data.documents);
                 setError("");
@@ -32,7 +32,7 @@ export const NotesPage = ({subPageName, backTo}) => {
     useEffect(() => {
         console.log("Fetching notes...");
         fetchNotes();
-    }, []);
+    }, []); // Empty dependency array to ensure it only runs once
 
     const handleChange = (event) => {
         setNewNote(event.target.value);
@@ -46,53 +46,66 @@ export const NotesPage = ({subPageName, backTo}) => {
         };
     
         try {
-            // Fetch notes first
-            await fetchNotes();
-    
             // Add the new note
             await Axios.post(`http://localhost:8000/putNotes`, {
                 id: note.id,
                 content: note.content,
                 color: note.color
             });
+
+            console.log(`Attempting to fetch notes now..`);
+            await fetchNotes();
+
         } catch (error) {
             console.error(`Axios Error: ${error}`);
             setError("Local Server Error");
         }
     
-        // Update the state after fetching notes
-        setNoteList([...notesList, note]);
     };
 
-    const deleteNote = (id) => {
-        setNoteList(notesList.filter((note) => note.id !== id));
+    const deleteNote = async (id) => {
+        try {
+            // Delete note
+            await Axios.post(`http://localhost:8000/deleteNote`, {
+                id: id
+            });
+
+            console.log(`Attempting to fetch notes now..`);
+            
+            // Fetch updated notes
+            await fetchNotes();
+
+        } catch (error) {
+            console.error(`Axios Error: ${error}`);
+            setError("Local Server Error");
+        }
     };
 
     return (
         <>
-        <div className="App">
-            <div className="addNote">
-                <input type='text' onChange={handleChange} />
-                <button onClick={addNote}>Add Note</button>
-            </div>
+            <div className="App">
+                <div className="addNote">
+                    <input type='text' onChange={handleChange} />
+                    <button onClick={addNote}>Add Note</button>
+                </div>
 
-            <div className="container">
-                {notesList.map((note) => {
-                    return (
-                        <Note	
-                            key={note.id}
-                            noteName={note.content}
-                            id={note.id}
-                            color={note.color}
-                            deleteNote={deleteNote}
-                        />
-                    );
-                })}
+                <div className="container">
+                    {notesList.map((note) => {
+                        return (
+                            <Note
+                                key={note.id}
+                                noteName={note.content}
+                                id={note.id}
+                                color={note.color}
+                                deleteNote={deleteNote}
+                            />
+                        );
+                    })}
+                </div>
+                <button>
+                    <Link to={backTo}>Back to Home</Link>
+                </button>
             </div>
-            <button>
-                <Link to={backTo}>Back to Home</Link>
-            </button>
-        </div>
-    </>
+        </>
     );
 };
