@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Note } from '../components/Note';  
+import hyper from '../assets/hyper.png'
 import '../styles/NotesPage.css';
 
 export const NotesPage = ({ subPageName, backTo }) => {
@@ -84,29 +85,33 @@ export const NotesPage = ({ subPageName, backTo }) => {
 
     return (
         <>
-            <div id="app">
-                <div className="add-note">
-                    <input type='text' onChange={handleChange} />
-                    <button onClick={addNote}>Add Note</button>
-                </div>
-
-                <div className="container">
-                    {notesList.map((note) => {
-                        return (
-                            <Note
-                                key={note.id}
-                                noteName={note.content}
-                                id={note.id}
-                                color={note.color}
-                                deleteNote={deleteNote}
-                            />
-                        );
-                    })}
-                </div>
-                <button>
-                    <Link to={backTo}>Back to Home</Link>
-                </button>
+        <div id="header">
+            <div id="logo">
+                <img src={hyper} />
             </div>
+            <h1>Hyper's notes app</h1>
+        </div>
+
+        <div id="app">
+                {notesList.map((note) => {
+                    return (
+                        <Note
+                            key={note.id}
+                            noteName={note.content}
+                            id={note.id}
+                            color={note.color}
+                            deleteNote={deleteNote}
+                        />
+                    );
+                })}
+        </div>
+        <div className="add-note">
+            <input type='text' onChange={handleChange} />
+            <button onClick={addNote}>Add Note</button>
+        </div>
+        <button>
+                <Link to={backTo}>Back to Home</Link>
+        </button>
         </>
     );
 };
