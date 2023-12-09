@@ -1,17 +1,15 @@
 import '../styles/NotesPage.css';
 
 export const Note = (props) => {
-    console.log(props.color);
 
     return (
         <>
         <textarea 
             className="note"
             value={props.noteName}
-            readOnly
             style={{ backgroundColor: `rgb${props.color}` }}
+            onDoubleClick={() => props.deleteNote(props.id)}
         />
-        <button onClick={() => props.deleteNote(props.id)}>Delete Note</button>
         </>
     );
 };
