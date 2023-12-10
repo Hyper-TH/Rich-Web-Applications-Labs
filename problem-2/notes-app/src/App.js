@@ -10,6 +10,7 @@ import { NotesPage } from './pages/NotesPage';
 import { CatFactsPage } from './pages/CatFactsPage';
 import { GenerateExcusesPage } from './pages/GenerateExcusesPage';
 import { ExcusesPage } from './pages/ExcusesPage';
+import { GitHubPage } from './pages/GitHubPage';
 
 function App() {
 	return (
@@ -48,6 +49,15 @@ function App() {
 					path="/excuses" 
 					element={
 						<ExcusesPage 
+							subPageName="ExcusesPage"
+							backTo="/"
+						/>
+					} 
+				/>
+				<Route 
+					path="/github" 
+					element={
+						<GitHubPage 
 							subPageName="ExcusesPage"
 							backTo="/"
 						/>

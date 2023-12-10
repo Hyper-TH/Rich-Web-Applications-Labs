@@ -20,6 +20,9 @@ export const HomePage = () => {
                     <button className='button'>
                         <Link to="/excuses"> Get List of Excuses </Link>
                     </button>
+                    <button className='button'>
+                        <Link to="/github"> GitHub API </Link>
+                    </button>
                 </div>
             </div>
         </div>
