@@ -7,48 +7,60 @@ export const ExcusesPage = ({backTo}) => {
     const [excuses, setExcuses] = useState([]);
     const [error, setError] = useState("");
     
-    useEffect(() => {
-        const fetchExcuses = async () => {
-            try {
-                // Fetch excuses from the server
-                const response = await Axios.get('http://localhost:8000/getExcuses');
+    const fetchExcuses = async (category) => {
+        try {
+            // Fetch excuses from the server
+            const response = await Axios.get(`http://localhost:8000/getExcuses?category=${encodeURIComponent(category)}`);
 
-                if (response.data && response.data.documents) {
-                    setExcuses(response.data.documents);
-                    setError("");
-                } else {
-                    setError("Error retrieving excuses");
-                }
-            } catch (error) {
-                console.error(`Error: ${error}`);
-                setError("Internal Server Error");
+            if (response.data && response.data.documents) {
+                setExcuses(response.data.documents);
+                setError("");
+            } else {
+                setError("Error retrieving excuses");
             }
-        };
-
-        // Call function to fetch once component mounts
-        fetchExcuses();
-    }, []);
+        } catch (error) {
+            console.error(`Error: ${error}`);
+            setError("Internal Server Error");
+        }
+    };
 
     return (
         <>
         <div className='excuse'>
             <h1> Get your list of excuses here! </h1>
             <h3> Use Responsibly! </h3>
+
+            <div className='buttonList'>
+                <button className='button'>
+                    <Link to={backTo}>Back to Home</Link>
+                </button>
+                
+                <button 
+                    onClick={() => fetchExcuses("party")} 
+                    className='button'> 
+                    Party 
+                </button>
+
+                <button 
+                    onClick={() => fetchExcuses("family")} 
+                    className='button'> 
+                    Family 
+                </button>
+                <button 
+                    onClick={() => fetchExcuses("office")} 
+                    className='button'> 
+                    Office 
+                </button>
+            </div>
+
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            {excuses.map((excuse, index) => (
+            {excuses?.map((excuse, index) => (
                 <div key={index}>
-                    <p>Category: {excuse.category}</p>
-                    <p>Excuse: {excuse.excuse}</p>
+                    <p>{index + 1}. {excuse.excuse}</p>
                 </div>
             ))}
         </div>
-
-        
-        <button className='button'>
-            <Link to={backTo}>Back to Home</Link>
-        </button>
-
         </>
     )
 };
