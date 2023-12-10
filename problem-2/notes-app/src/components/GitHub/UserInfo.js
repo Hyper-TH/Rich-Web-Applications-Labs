@@ -13,19 +13,19 @@ export const UserInfo = (props) => {
                     </tr>
                     <tr>
                         <th>Email: </th>
-                        <td>{props.email}</td>
+                        <td>{props.email || 'N/A'}</td>
                     </tr>
                     <tr>
                         <th>Username: </th>
-                        <td>{props.login}</td>
+                        <td>{props.login || 'N/A'}</td>
                     </tr>
                     <tr>
                         <th>Location: </th>
-                        <td>{props.location}</td>
+                        <td>{props.location || 'N/A'}</td>
                     </tr>
                     <tr>
                         <th>Number of Gists: </th>
-                        <td>{props.numOfGists}</td>
+                        <td>{props.numOfGists || 'N/A'}</td>
                     </tr>
                 </tbody>
             </table>

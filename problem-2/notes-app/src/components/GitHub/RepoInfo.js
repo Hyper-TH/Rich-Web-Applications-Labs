@@ -4,7 +4,7 @@ import '../../styles/GitHubPage.css';
 export const RepoInfo = (props) => {
     return <>    
       <div id='userRepos'>
-            <h1> User Repos </h1>
+            <h1> User Repos </h1> 
             <div id="repoTableWrapper">
                 <table id='repoInfo'>
                     <tbody id="Rlist">
@@ -17,7 +17,7 @@ export const RepoInfo = (props) => {
                                 </tr>
                                 <tr key={i}>
                                     <th>Description:</th>
-                                    <td>{repo.description}</td>
+                                    <td>{repo.description || 'N/A'}</td>
                                 </tr>
                             </>
                             )
