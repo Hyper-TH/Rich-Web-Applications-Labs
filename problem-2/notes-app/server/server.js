@@ -26,6 +26,7 @@ app.get('/message', (req, res) => {
     res.json({ message: 'Hello from server!' });
 });
 
+/* START NOTE ENDPOINTS */
 // Endpoint to get notes from Firestore
 app.get('/getNotes', async (req, res) => {
     try {
@@ -133,6 +134,71 @@ app.post('/updateNote', async (req, res) => {
         res.status(500).json({ error: 'Firebase Server Error' });
     }
 });
+/* END NOTE ENDPOINTS */
+
+/* START EXCUSE ENDPOINTS */
+// endpoint to generate an excuse
+app.get('/excuse', async (req, res) => {
+    try {
+        const { category } = req.query;
+    
+        if (!category) {
+            return res.status(400).json({ error: 'Category is required '});
+        }
+    
+        const apiURL = `https://excuser-three.vercel.app/v1/excuse/${category}`;
+        const response = await Axios.get(apiURL);
+
+        console.log(response.data);  // Display the response data
+        res.json(response.data);     // Send the response data to the client
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+app.get('/getExcuses', async (req, res) => {
+    try {
+        const collectionName = 'Excuses';
+
+        // Fetch all documents from the "excuses" collection
+        const querySnapshot = await firestore.collection(collectionName).get();
+
+        // Extract document data
+        const documents = querySnapshot.docs.map((doc) => doc.data());
+
+        res.json({ documents });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    };
+});
+
+app.post('/putExcuse', async (req, res) => {
+    try {
+        const { excuse, category } = req.body;
+
+        if(!excuse) {
+            return res.status(400).json({ error: 'Excuse is required' });
+        }
+
+        const collectionName = 'Excuses';
+
+        // Add the excuse to the "excuses" collection in Firestore
+        await firestore.collection(collectionName).add({
+            category,
+            excuse
+        });
+
+        res.json({ message: 'Excuse added to Firestore succcessfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error '});
+    }
+});
+/* END EXCUSE ENDPOINTS */
 
 // Start server
 app.listen(8000, () => {
