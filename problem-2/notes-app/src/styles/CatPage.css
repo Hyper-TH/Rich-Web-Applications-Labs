@@ -1,6 +1,14 @@
-body {
-    margin: 0;
-    background: #000000;
+#catMockBody {
+    position: fixed;
+    margin:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a471c;
+}
+
+#catHeader {
+    color:white;
+    text-align: center;
 }
 
 .catFact {
@@ -19,10 +27,20 @@ body {
 }
 
 /* Styling for button */
-.button {
+.catButtonList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.catButton {
     padding: 10px 20px;
+    margin-left: 10px;
     font-size: 16px;
-    background-color: #4caf50; /* Green background color */
+    background-color: #ad6624; /* Green background color */
     color: white;
     border: none;
     border-radius: 5px;
@@ -30,6 +48,6 @@ body {
 }
   
 /* Hover effect for the button */
-.button:hover {
-    background-color: #45a049;
+.catButton:hover {
+    background-color: rgb(218, 178, 50);
 }

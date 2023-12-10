@@ -1,10 +1,11 @@
-#excusesMockBody {
+#excuses2MockBody {
     position: fixed;
     margin:0;
     width: 100vw;
     height: 100vh;
     background-color: #091aaf;
 }
+
 
 .excuse {
     color: white;

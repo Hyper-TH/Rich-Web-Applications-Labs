@@ -36,32 +36,35 @@ export const GenerateExcusesPage = ({ backTo }) => {
 
     return (
         <>
-        <h1> Welcome to the Excuse Generator! </h1>
-        
-        <button className='button'>
-            <Link to={backTo}>Back to Home</Link>
-        </button>
+        <div id='excusesMockBody'>
+            <div className='excuse'>
+                <h1> Welcome to the Excuse Generator! </h1>
 
+                <h2 className='excuse'>{excuseDetails || "Choose a category"}</h2>
+                
+                <div className='buttonList'>
+                    <button className='button'>
+                        <Link to={backTo}>Back to Home</Link>
+                    </button>
 
-        <h2 className='excuse'>{excuseDetails || "Choose a category"}</h2>
-        
-        <div className='buttonList'>
-            <button 
-                onClick={() => generateExcuse("party")} 
-                className='button'> 
-                Party 
-            </button>
+                    <button 
+                        onClick={() => generateExcuse("party")} 
+                        className='button'> 
+                        Party 
+                    </button>
 
-            <button 
-                onClick={() => generateExcuse("family")} 
-                className='button'> 
-                Family 
-            </button>
-            <button 
-                onClick={() => generateExcuse("office")} 
-                className='button'> 
-                Office 
-            </button>
+                    <button 
+                        onClick={() => generateExcuse("family")} 
+                        className='button'> 
+                        Family 
+                    </button>
+                    <button 
+                        onClick={() => generateExcuse("office")} 
+                        className='button'> 
+                        Office 
+                    </button>
+                </div>
+            </div>
         </div>
         </>
     );

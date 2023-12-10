@@ -85,39 +85,40 @@ export const NotesPage = ({ subPageName, backTo }) => {
 
     return (
         <>
-        <div id="header">
-            <div id="logo">
-                <img src={hyper} />
+        <div id='notesMockBody'>
+            <div id="header">
+                <div id="logo">
+                    <img src={hyper} />
+                </div>
+                <h1>Hyper's notes app</h1>
             </div>
-            <h1>Hyper's notes app</h1>
+            
+            <button className="button">
+                    <Link to={backTo}>Back to Home</Link>
+            </button>
+            
+            <div className="addNote">
+                <input type="text" className="input-box" onChange={handleChange} />
+                <button className="button" onClick={addNote}>Add Note</button>
+            </div>
+
+
+
+            <div id="app">
+                    {notesList.map((note) => {
+                        return (
+                            <Note
+                                key={note.id}
+                                noteName={note.content}
+                                id={note.id}
+                                color={note.color}
+                                deleteNote={deleteNote}
+                            />
+                        );
+                    })}
+            
+            </div>
         </div>
-        
-        <button className="button">
-                <Link to={backTo}>Back to Home</Link>
-        </button>
-        
-        <div className="addNote">
-            <input type="text" className="input-box" onChange={handleChange} />
-            <button className="button" onClick={addNote}>Add Note</button>
-        </div>
-
-
-
-        <div id="app">
-                {notesList.map((note) => {
-                    return (
-                        <Note
-                            key={note.id}
-                            noteName={note.content}
-                            id={note.id}
-                            color={note.color}
-                            deleteNote={deleteNote}
-                        />
-                    );
-                })}
-        
-        </div>
-
         </>
     );
 };

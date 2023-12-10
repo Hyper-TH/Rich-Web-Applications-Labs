@@ -18,19 +18,23 @@ export const CatFactsPage = ({subPageName, backTo}) => {
 
     return (
         <>
-        <h1>Welcome to the {subPageName}</h1>
+        <div id='catMockBody'>
+            <h1 id='catHeader'>Welcome to the Cat Facts Page!</h1>
 
-        <button className='button'>
-            <Link to={backTo}>Back to Home</Link>
-        </button>
+            <div className="App"> 
 
-        <div className="App"> 
-            <button onClick={fetchCatFact} className='button'>
-                Generate Cat Fact
-            </button>
-            <h2 className='catFact'> {catFact} </h2>
-		</div>
+                <div className='catButtonList'>
+                    <button className='catButton'>
+                        <Link to={backTo}>Back to Home</Link>
+                    </button>
+                    <button onClick={fetchCatFact} className='catButton'>
+                        Generate Cat Fact
+                    </button>
+                </div>
 
+                <h2 className='catFact'> {catFact} </h2>
+            </div>
+        </div>
         </>
     );
 };
