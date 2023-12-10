@@ -161,10 +161,20 @@ app.get('/excuse', async (req, res) => {
 
 app.get('/getExcuses', async (req, res) => {
     try {
-        const collectionName = 'Excuses';
+        const { category } = req.query;
 
-        // Fetch all documents from the "excuses" collection
-        const querySnapshot = await firestore.collection(collectionName).get();
+        const collectionName = 'Excuses';
+        let query;
+
+        // If a category is provided, add a filter based on the category
+        if (category) {
+            query = firestore.collection(collectionName).where('category', '==', category);
+        } else {
+            query = firestore.collection(collectionName);
+        }
+
+        // Fetch documents based on the query
+        const querySnapshot = await query.get();
 
         // Extract document data
         const documents = querySnapshot.docs.map((doc) => doc.data());
@@ -173,7 +183,7 @@ app.get('/getExcuses', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
-    };
+    }
 });
 
 app.post('/putExcuse', async (req, res) => {
