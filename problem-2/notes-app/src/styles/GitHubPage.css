@@ -1,0 +1,117 @@
+.App {
+    text-align: center;
+}
+  
+#gitMockBody {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: #98B4D4;
+}
+
+
+#gitMockBody button {
+    background-color: #3389ec;
+}
+
+/* START MAIN CONTAINERS */
+#mainContainer {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #d4b898;
+    height: auto;
+    border-radius: 15px;
+    border: 5px solid;
+}
+  
+#mainContainer h1 {
+    font-size: calc(16px + 2vw);
+    text-align: center;
+}
+  
+
+#userProfile {
+    height: auto;
+    flex: 1;
+}
+  
+#userProfile img {
+    margin-left: 25%;
+    margin-bottom: 5%;
+    max-width: 50%;
+    height: auto;   
+    border-radius: 50%;
+}
+  
+#userRepos {
+    height: auto;
+    flex: 1;
+}
+/* END MAIN CONTAINERS */
+  
+  
+/* START SEARCH BAR */
+.searchBar {
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+  
+.searchBar input {
+    width: 80%;
+    height: 30px;
+    border-radius:10px;
+}
+  
+.searchBar button {
+    border-radius:10px;
+}
+/* END SEARCH BAR */
+  
+  
+table {
+    background-color: white;
+    text-align: left;
+    /* border-collapse: collapse; */ /* This will not work for rounded corners*/
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+  
+/* Apply a border to the right of all but the last column */
+table th:not(:last-child),
+table td:not(:last-child) {
+    border-right: 1px solid black;
+}
+  
+/* Apply a border to the bottom of all but the last row */
+table > thead>tr:not(:last-child)>th,
+table > thead>tr:not(:last-child)>td,
+table >tbody>tr:not(:last-child)>th,
+table >tbody>tr:not(:last-child)>td,
+table >tfoot>tr:not(:last-child)>th,
+table >tfoot>tr:not(:last-child)>td,
+table >tr:not(:last-child)>td,
+table >tr:not(:last-child)>th,
+table >thead:not(:last-child),
+table >tbody:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+  
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+  
+.noResults {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
