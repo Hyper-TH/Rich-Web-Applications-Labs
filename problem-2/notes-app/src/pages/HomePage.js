@@ -15,7 +15,7 @@ export const HomePage = () => {
                     <Link to="/catfacts">Get a Cat Fact</Link>
                 </button>
                 <button>
-                    <Link to="/excuse"> Generate an Excuse </Link>
+                    <Link to="/generateExcuse"> Generate an Excuse </Link>
                 </button>
             </div>
         </div>

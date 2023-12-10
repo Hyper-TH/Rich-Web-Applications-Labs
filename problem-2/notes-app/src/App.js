@@ -8,7 +8,7 @@ import {
 import { HomePage } from './pages/HomePage';
 import { NotesPage } from './pages/NotesPage';
 import { CatFactsPage } from './pages/CatFactsPage';
-import { ExcusesPage } from './pages/ExcusesPage';
+import { GenerateExcusesPage } from './pages/GenerateExcusesPage';
 
 function App() {
 	return (
@@ -35,9 +35,9 @@ function App() {
 					} 
 				/>
 				<Route 
-					path="/excuse" 
+					path="/generateExcuse" 
 					element={
-						<ExcusesPage 
+						<GenerateExcusesPage 
 							subPageName="ExcusesPage"
 							backTo="/"
 						/>
