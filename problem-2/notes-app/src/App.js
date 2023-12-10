@@ -8,6 +8,7 @@ import {
 import { HomePage } from './pages/HomePage';
 import { NotesPage } from './pages/NotesPage';
 import { CatFactsPage } from './pages/CatFactsPage';
+import { ExcusesPage } from './pages/ExcusesPage';
 
 function App() {
 	return (
@@ -29,6 +30,15 @@ function App() {
 					element={
 						<CatFactsPage 
 							subPageName="CatFactsPage"
+							backTo="/"
+						/>
+					} 
+				/>
+				<Route 
+					path="/excuse" 
+					element={
+						<ExcusesPage 
+							subPageName="ExcusesPage"
 							backTo="/"
 						/>
 					} 
