@@ -9,6 +9,7 @@ import { HomePage } from './pages/HomePage';
 import { NotesPage } from './pages/NotesPage';
 import { CatFactsPage } from './pages/CatFactsPage';
 import { GenerateExcusesPage } from './pages/GenerateExcusesPage';
+import { ExcusesPage } from './pages/ExcusesPage';
 
 function App() {
 	return (
@@ -38,6 +39,15 @@ function App() {
 					path="/generateExcuse" 
 					element={
 						<GenerateExcusesPage 
+							subPageName="GenerateExcusePage"
+							backTo="/"
+						/>
+					} 
+				/>
+				<Route 
+					path="/excuses" 
+					element={
+						<ExcusesPage 
 							subPageName="ExcusesPage"
 							backTo="/"
 						/>
