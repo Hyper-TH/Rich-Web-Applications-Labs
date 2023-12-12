@@ -6,7 +6,7 @@ This concept can be useful for passing data in page-to-page or page-to-component
 
 ```JavaScript
 // Import the child component
-import ChildComponent from './ChildCOmponent';
+import ChildComponent from './ChildComponent';
 
 // Parent component
 const ParentComponent = () => {
@@ -118,6 +118,35 @@ The CSS box model states the design and layout of a box within an HTML element. 
 
 ![CSS Box Model](box_model.png)
 [Diagram from w3schools.com](https://www.w3schools.com/css/css_boxmodel.asp)
+
+Sample HTML:
+```html
+<body>
+    <h1> CSS Box Model </h1>
+    <p>
+        The space between the content and the border is the <b>Padding</b>. <br />
+        The line encompassing the content and the padding forming the 'box' is the <b>Border</b>. <br />
+        The space surrounding the border that separates other component/content from the box itself is the <b>Margin</b>. <br />
+    </p>
+    <div class="box">
+        <h3>Content</h3>
+    </div>
+</body>
+```
+
+Sample CSS:
+```css
+.box {
+    width: 300px;
+    border: 15px solid rgb(11, 9, 116);
+    padding: 50px;
+    margin: 20px;
+}
+
+.box h3 {
+    text-align: center;
+}
+```
 
 # Detail how the browser loads and bootstraps a rich web application from an initial URL.
 
