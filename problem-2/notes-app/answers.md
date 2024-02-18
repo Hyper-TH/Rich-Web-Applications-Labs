@@ -147,14 +147,13 @@ Sample CSS:
     text-align: center;
 }
 ```
-
-# Detail how the browser loads and bootstraps a rich web application from an initial URL.
-
 The space between the content and the border is the <b>Padding</b>.
 The line encompassing the content and the padding forming the 'box' is the <b>Border</b>.
 The space surrounding the border that separates other component/content from the box itself is the <b>Margin</b>.
 
 The margin allows space to be rendered between the box and other DOM elements.
+
+# Detail how the browser loads and bootstraps a rich web application from an initial URL.
 
 1. User enters the URL into the browser.
 The user enters a URL into the address bar/clicks a link. Then the browser sends a request to the server with the provided link.
